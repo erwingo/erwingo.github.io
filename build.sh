@@ -11,3 +11,8 @@ echo 'done'
 echo '\ngenerating dist/_fonts'
 mkdir dist/_fonts
 icon-font-generator src/_fonts/*.svg -o dist/_fonts --types 'woff, woff2'
+
+echo '\ncopying media files...'
+mkdir dist/_media
+cp src/_media/* dist/_media
+echo 'done'
