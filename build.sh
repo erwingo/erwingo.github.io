@@ -1,3 +1,4 @@
+rm -rf dist
 mkdir dist
 
 echo 'generating index.html'
