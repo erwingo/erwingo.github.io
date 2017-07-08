@@ -1,0 +1,77 @@
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background-color: #00bcd4;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center; }
+
+@font-face {
+  font-family: 'icons';
+  src: url("../_fonts/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff2"), url("../_fonts/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff"); }
+
+.icon {
+  line-height: 1; }
+  .icon.is-email-button::before {
+    content: '\f101'; }
+  .icon.is-github::before {
+    content: '\f102'; }
+  .icon.is-linkedin::before {
+    content: '\f103'; }
+  .icon::before {
+    font-family: 'icons';
+    font-style: normal;
+    font-weight: normal;
+    vertical-align: top; }
+
+.title {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 16px;
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center; }
+  .title::after {
+    display: block;
+    width: 65%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: #fff;
+    content: ''; }
+  .title .title__hl {
+    color: #d55454; }
+
+.socialitems .socialitems__item {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  margin: 0 8px;
+  padding: 2px 2px 0;
+  color: #fff;
+  font-size: 50px;
+  text-decoration: none;
+  vertical-align: middle; }
+  .socialitems .socialitems__item:hover::before {
+    transform: translate(0, 0);
+    opacity: 1;
+    visibility: visible; }
+  .socialitems .socialitems__item::before {
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    transform: translate(0, 3px);
+    transition: 0.3s;
+    background-color: #fff;
+    content: '';
+    opacity: 0;
+    visibility: hidden; }
