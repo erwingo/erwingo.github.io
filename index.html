@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href=dist/_media/favicon.png rel="shortcut icon" />
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background-color: #00BCD4;
+      color: #fff;
+      font-family:'Courier New', Courier, monospace;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @font-face {
+      font-family: "icons";
+      src: url("./dist/_fonts/icons.eot?4ba3fc36fc705cf6e2b91cecdc67908a?#iefix") format("embedded-opentype"),
+      url("./dist/_fonts/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff2"),
+      url("./dist/_fonts/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff"),
+      url("./dist/_fonts/icons.ttf?4ba3fc36fc705cf6e2b91cecdc67908a") format("truetype"),
+      url("./dist/_fonts/icons.svg?4ba3fc36fc705cf6e2b91cecdc67908a#icons") format("svg");
+    }
+
+    .icon {
+        line-height: 1;
+    }
+
+    .icon:before {
+        font-family: icons !important;
+        font-style: normal;
+        font-weight: normal !important;
+        vertical-align: top;
+    }
+
+    .icon.is-email-button:before {
+        content: "\f101";
+    }
+    .icon.is-github:before {
+        content: "\f102";
+    }
+    .icon.is-linkedin:before {
+        content: "\f103";
+    }
+
+    .title {
+      position: relative;
+      display: inline-block;
+      font-size: 72px;
+      line-height: 1.25;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 0 16px;
+    }
+
+    .title::after{
+      background-color: #fff;
+      content: '';
+      display: block;
+      height: 1px;
+      width: 65%;
+      margin: 0 auto;
+    }
+
+    .title .title__hl {
+      color: #D55454;
+    }
+
+    .socialitems__item {
+      text-decoration: none;
+      color: #fff;
+      font-size: 50px;
+      display: inline-block;
+      position: relative;
+      margin: 0 4px;
+      padding: 2px 2px 0;
+      top: -2px;
+    }
+
+    .socialitems__item:hover:before {
+      transform: translate(0, 0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .socialitems__item:before {
+      transition: 0.3s;
+      visibility: hidden;
+      transform: translate(0, 3px);
+      content: '';
+      height: 3px;
+      width: 100%;
+      bottom: -5px;
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      background-color: #fff;
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-102237991-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- End Google Analytics -->
+</head>
+<body>
+  <div class="container">
+    <p class='title'>
+      {erwin<span class='title__hl'>go</span>}
+    </p>
+
+    <div class="socialitems">
+      <a onclick="ga('send', 'event', 'link', 'click', 'Github');" title="Github" target="blank" href="https://github.com/erwingo" class="socialitems__item">
+        <span class="icon is-github"></span>
+      </a>
+      <a onclick="ga('send', 'event', 'link', 'click', 'LinkedIn');" title="LinkedIn" target="blank" href="https://www.linkedin.com/in/erwin-gait%C3%A1n-ospino-61438453/" class="socialitems__item">
+        <span class="icon is-linkedin"></span>
+      </a>
+      <a onclick="ga('send', 'event', 'link', 'click', 'Email');" title="Email" href="mailto:erwingaitano@gmail.com" class="socialitems__item">
+        <span class="icon is-email-button"></span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
