@@ -15,7 +15,7 @@ body {
 
 @font-face {
   font-family: 'icons';
-  src: url("../_fonts/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff2"), url("../_fonts/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff"); }
+  src: url("../_fonts/icons/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff2"), url("../_fonts/icons/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff"); }
 
 .icon {
   line-height: 1; }
@@ -39,6 +39,9 @@ body {
   font-weight: bold;
   line-height: 1.25;
   text-align: center; }
+  @media (max-width: 420px) {
+    .title {
+      font-size: 42px; } }
   .title::after {
     display: block;
     width: 65%;

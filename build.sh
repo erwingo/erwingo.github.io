@@ -10,8 +10,8 @@ node-sass src/_css/styles.scss > dist/_css/styles.css
 echo 'done'
 
 echo '\ngenerating dist/_fonts'
-mkdir dist/_fonts
-icon-font-generator src/_fonts/*.svg -o dist/_fonts --types 'woff, woff2'
+mkdir dist/_fonts && mkdir dist/_fonts/icons
+icon-font-generator src/_fonts/icons/*.svg -o dist/_fonts/icons --types 'woff, woff2' --jsonpath 'dist/_fonts/icons/index.json'
 
 echo '\ncopying media files...'
 mkdir dist/_media
