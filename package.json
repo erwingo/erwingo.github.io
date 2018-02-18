@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
+    "deploy": "git checkout source && npm run build && npm checkout master && git push origin master",
     "build": "npm run clean && webpack --config webpack.config.js"
   },
   "repository": {
