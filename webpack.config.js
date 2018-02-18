@@ -28,10 +28,13 @@ module.exports = {
 
   module: {
     rules: [
+      // TYPESCRIPT
       { test: /\.tsx?$/,
         include: getAbsPath('src'),
         use: ['ts-loader']
       },
+
+      // SCSS
       {
         test: /\.s?css$/,
         include: getAbsPath('src'),
@@ -39,6 +42,20 @@ module.exports = {
           use: ['css-loader', 'sass-loader']
         })
       },
+
+      // IMAGES
+      {
+        test: /\.(png|jpg|svg)$/,
+        include: getAbsPath('src'),
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[hash].[ext]'
+          }
+        }
+      },
+
+      // SVG ICONS
       {
         test: /[\\\/]_fonts[\\\/].*[\\\/]font\.js$/,
         include: getAbsPath('src'),
@@ -49,8 +66,10 @@ module.exports = {
             { loader: 'css-loader', options: { url: false } },
             'webfonts-loader'
           ]
-        })
+        }),
       },
+
+      // PUG
       {
         test: /\.pug$/,
         include: getAbsPath('src'),
