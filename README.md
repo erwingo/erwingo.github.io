@@ -1,8 +1,12 @@
 # Development
 
-Make changes in `src` folder and when done:
+Branch `source` is the one for development.
 
-```
-$ sh build.sh
-# Then commit and push as usual
+Branch `master` is for the `dist` files generated.
+
+# Deploy
+
+```sh
+# From branch `source`
+$ npm run deploy
 ```

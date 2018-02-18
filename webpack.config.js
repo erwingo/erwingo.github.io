@@ -21,7 +21,7 @@ module.exports = {
     // TODO: webpack default is '' but i have to explicitely set it to './'
     // because of a webfonts-loader issue
     // https://github.com/jeerbl/webfonts-loader/issues/28
-    publicPath: './dist/'
+    publicPath: './'
   },
 
   devtool: 'source-map',
@@ -50,7 +50,7 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[hash].[ext]'
+            name: '[name].[hash].[ext]'
           }
         }
       },
