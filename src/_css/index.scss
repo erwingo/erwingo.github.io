@@ -1,6 +1,6 @@
-$color-white: #fff;
+$color-text: #fff;
 $color-red: #d55454;
-$main-bg: #00bcd4;
+$main-bg: #000;
 
 html,
 body {
@@ -14,16 +14,16 @@ body {
   justify-content: center;
   margin: 0;
   background-color: $main-bg;
-  color: $color-white;
+  color: $color-text;
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
 }
 
-@font-face {
-  font-family: 'icons';
-  src: url('../_fonts/icons/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a') format('woff2'),
-  url('../_fonts/icons/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a') format('woff');
-}
+// @font-face {
+//   font-family: 'icons';
+//   src: url('../_fonts/icons/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a') format('woff2'),
+//   url('../_fonts/icons/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a') format('woff');
+// }
 
 .icon {
   line-height: 1;
@@ -72,7 +72,7 @@ body {
     width: 65%;
     height: 1px;
     margin: 0 auto;
-    background-color: $color-white;
+    background-color: $color-text;
     content: '';
   }
 
@@ -88,7 +88,7 @@ body {
     top: -2px;
     margin: 0 8px;
     padding: 2px 2px 0;
-    color: $color-white;
+    color: $color-text;
     font-size: 50px;
     text-decoration: none;
     vertical-align: middle;
@@ -109,7 +109,7 @@ body {
       height: 3px;
       transform: translate(0, 3px);
       transition: 0.3s;
-      background-color: $color-white;
+      background-color: $color-text;
       content: '';
       opacity: 0;
       visibility: hidden;

@@ -8,23 +8,19 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  background-color: #00bcd4;
+  background-color: #000;
   color: #fff;
   font-family: 'Courier New', Courier, monospace;
   text-align: center; }
 
-@font-face {
-  font-family: 'icons';
-  src: url("../_fonts/icons/icons.woff2?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff2"), url("../_fonts/icons/icons.woff?4ba3fc36fc705cf6e2b91cecdc67908a") format("woff"); }
-
 .icon {
   line-height: 1; }
   .icon.is-email-button::before {
-    content: '\f101'; }
+    content: '\F101'; }
   .icon.is-github::before {
-    content: '\f102'; }
+    content: '\F102'; }
   .icon.is-linkedin::before {
-    content: '\f103'; }
+    content: '\F103'; }
   .icon::before {
     font-family: 'icons';
     font-style: normal;
@@ -78,3 +74,31 @@ body {
     content: '';
     opacity: 0;
     visibility: hidden; }
+@font-face {
+	font-family: "icons";
+	src: url("fonts.icons.ab968702ac5f42cb7fc8.woff") format("woff"),
+url("fonts.icons.ab968702ac5f42cb7fc8.woff2") format("woff2");
+}
+
+.icon {
+	line-height: 1;
+}
+
+.icon:before {
+	font-family: icons !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.icon.is-email-button:before {
+	content: "\F101";
+}
+.icon.is-github:before {
+	content: "\F102";
+}
+.icon.is-linkedin:before {
+	content: "\F103";
+}
+
+/*# sourceMappingURL=index.36fa07a19f178927d0a94583910b3499.css.map*/
