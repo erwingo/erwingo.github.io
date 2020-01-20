@@ -1,11 +1,11 @@
 const path = require('path');
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const getAbsPath = pathStr => path.resolve(__dirname, pathStr)
 
 module.exports = {
+  mode: 'production',
   entry: {
     index: getAbsPath('src/index.ts')
   },
@@ -38,35 +38,46 @@ module.exports = {
       {
         test: /\.s?css$/,
         include: getAbsPath('src'),
-        use: ExtractTextPlugin.extract({
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          'css-loader',
+          'sass-loader'
+        ]
       },
 
       // IMAGES
       {
         test: /\.(png|jpg|svg)$/,
         include: getAbsPath('src'),
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[hash].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[hash].[ext]'
+            }
           }
-        }
+        ]
       },
 
       // SVG ICONS
       {
         test: /[\\\/]_fonts[\\\/].*[\\\/]font\.js$/,
         include: getAbsPath('src'),
-        use: ExtractTextPlugin.extract({
-          use: [
-            // NOTE: We disable the url handling here so that css-loader doesn't
-            // try to search for the font files inside source font dirs
-            { loader: 'css-loader', options: { url: false } },
-            'webfonts-loader'
-          ]
-        }),
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          'css-loader',
+          'webfonts-loader'
+        ]
+        // use: ExtractTextPlugin.extract({
+        //   use: [
+        //     // NOTE: We disable the url handling here so that css-loader doesn't
+        //     // try to search for the font files inside source font dirs
+        //     { loader: 'css-loader', options: { url: false } },
+        //     'webfonts-loader'
+        //   ]
+        // }),
       },
 
       // PUG
@@ -80,7 +91,9 @@ module.exports = {
 
   plugins: [
     // contentash is the file's checksum, useful for caching purposes
-    new ExtractTextPlugin('[name].[contenthash].css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
     new HtmlWebpackPlugin({
       inject: 'body',
       template: getAbsPath('src/index.pug'),
