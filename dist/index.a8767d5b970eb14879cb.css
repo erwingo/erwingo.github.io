@@ -27,7 +27,7 @@ body {
     font-weight: normal;
     vertical-align: top; }
 
-.title {
+.App__title {
   display: inline-block;
   position: relative;
   margin: 0 0 16px;
@@ -36,19 +36,19 @@ body {
   line-height: 1.25;
   text-align: center; }
   @media (max-width: 420px) {
-    .title {
+    .App__title {
       font-size: 42px; } }
-  .title::after {
+  .App__title::after {
     display: block;
     width: 65%;
     height: 1px;
     margin: 0 auto;
     background-color: #fff;
     content: ''; }
-  .title .title__hl {
+  .App__title__hl {
     color: #d55454; }
 
-.socialitems .socialitems__item {
+.App__socialitems__item {
   display: inline-block;
   position: relative;
   top: -2px;
@@ -58,11 +58,11 @@ body {
   font-size: 50px;
   text-decoration: none;
   vertical-align: middle; }
-  .socialitems .socialitems__item:hover::before {
+  .App__socialitems__item:hover::before {
     transform: translate(0, 0);
     opacity: 1;
     visibility: visible; }
-  .socialitems .socialitems__item::before {
+  .App__socialitems__item::before {
     position: absolute;
     bottom: -14px;
     left: 0;
@@ -103,4 +103,4 @@ url("/fonts.icons.ab968702ac5f42cb7fc8.woff2") format("woff2");
 }
 
 
-/*# sourceMappingURL=index.018a61fb1012a3c4915c.css.map*/
+/*# sourceMappingURL=index.a8767d5b970eb14879cb.css.map*/

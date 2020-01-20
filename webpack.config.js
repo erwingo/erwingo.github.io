@@ -4,14 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const getAbsPath = pathStr => path.resolve(__dirname, pathStr)
 
+const distFolder = getAbsPath('dist');
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
-  mode: 'production',
+  mode: isProd ? 'production' : 'development',
   entry: {
-    index: getAbsPath('src/index.ts')
+    index: getAbsPath('src/index.tsx')
+  },
+  devServer: {
+    contentBase: distFolder
   },
   output: {
-    path: getAbsPath('dist'),
-    filename: '[name].bundle.[chunkhash].js',
+    path: distFolder,
+    filename: isProd ? '[name].bundle.[contenthash].js' : '[name].bundle.js',
 
     // Prefix path for all the relative-url assets required inside the source code.
     // Eg. if you have a .css file that has background-image: url('a.png') <<Nno absolute path>>
@@ -21,7 +27,7 @@ module.exports = {
     // TODO: webpack default is '' but i have to explicitely set it to './'
     // because of a webfonts-loader issue
     // https://github.com/jeerbl/webfonts-loader/issues/28
-    publicPath: './'
+    // publicPath: './'
   },
 
   devtool: 'source-map',
@@ -55,7 +61,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash].[ext]'
+              name: '[name].[contenthash].[ext]'
             }
           }
         ]
@@ -96,7 +102,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
-      template: getAbsPath('src/index.pug'),
+      template: getAbsPath('src/index.html'),
       filename: 'index.html'
     })
   ],
