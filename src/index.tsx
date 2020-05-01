@@ -26,7 +26,7 @@ const items = [
         name: 'Blog',
         icon: 'is-blog',
         target: '_blank',
-        href: 'https://goerwin.co/blog',
+        href: 'https://blog.goerwin.co',
     },
 ];
 
