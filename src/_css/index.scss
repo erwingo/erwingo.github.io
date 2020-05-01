@@ -1,6 +1,6 @@
-$color-text: #fff;
-$color-red: #d55454;
-$main-bg: #000;
+$primaryTextColor: #fff;
+$brandTextColor: #ff8159;
+$mainBG: #000;
 
 html,
 body {
@@ -13,8 +13,8 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
-  background-color: $main-bg;
-  color: $color-text;
+  background-color: $mainBG;
+  color: $primaryTextColor;
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
 }
@@ -73,12 +73,12 @@ body {
       width: 65%;
       height: 1px;
       margin: 0 auto;
-      background-color: $color-text;
+      background-color: $primaryTextColor;
       content: '';
     }
   
     &__hl {
-      color: $color-red;
+      color: $brandTextColor;
     }
   }
   
@@ -89,7 +89,7 @@ body {
       top: -2px;
       margin: 0 8px;
       padding: 2px 2px 0;
-      color: $color-text;
+      color: $primaryTextColor;
       font-size: 50px;
       text-decoration: none;
       vertical-align: middle;
@@ -110,7 +110,7 @@ body {
         height: 3px;
         transform: translate(0, 3px);
         transition: 0.3s;
-        background-color: $color-text;
+        background-color: $primaryTextColor;
         content: '';
         opacity: 0;
         visibility: hidden;
