@@ -1,23 +1,23 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const getAbsPath = pathStr => path.resolve(__dirname, pathStr)
+const getAbsPath = (pathStr) => path.resolve(__dirname, pathStr);
 
-const distFolder = getAbsPath('dist');
-const isProd = process.env.NODE_ENV === 'production';
+const distFolder = getAbsPath("dist");
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
-  mode: isProd ? 'production' : 'development',
+  mode: isProd ? "production" : "development",
   entry: {
-    index: getAbsPath('src/index.tsx')
+    index: getAbsPath("src/index.tsx"),
   },
   devServer: {
-    contentBase: distFolder
+    contentBase: distFolder,
   },
   output: {
     path: distFolder,
-    filename: isProd ? '[name].bundle.[contenthash].js' : '[name].bundle.js',
+    filename: isProd ? "[name].bundle.[contenthash].js" : "[name].bundle.js",
 
     // Prefix path for all the relative-url assets required inside the source code.
     // Eg. if you have a .css file that has background-image: url('a.png') <<Nno absolute path>>
@@ -30,87 +30,69 @@ module.exports = {
     // publicPath: './'
   },
 
-  devtool: 'source-map',
+  devtool: "source-map",
 
   module: {
     rules: [
       // TYPESCRIPT
-      { test: /\.tsx?$/,
-        include: getAbsPath('src'),
-        use: ['ts-loader']
-      },
+      { test: /\.tsx?$/, include: getAbsPath("src"), use: ["ts-loader"] },
 
       // SCSS
       {
         test: /\.s?css$/,
-        include: getAbsPath('src'),
+        include: getAbsPath("src"),
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
-          'css-loader',
-          'sass-loader'
-        ]
+          "css-loader",
+          "sass-loader",
+        ],
       },
 
       // IMAGES
       {
         test: /\.(png|jpg|svg)$/,
-        include: getAbsPath('src'),
+        include: getAbsPath("src"),
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[contenthash].[ext]'
-            }
-          }
-        ]
+              name: "[name].[contenthash].[ext]",
+            },
+          },
+        ],
       },
 
       // SVG ICONS
       {
         test: /[\\\/]_fonts[\\\/].*[\\\/]font\.js$/,
-        include: getAbsPath('src'),
+        include: getAbsPath("src"),
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          'css-loader',
-          'webfonts-loader'
-        ]
-        // use: ExtractTextPlugin.extract({
-        //   use: [
-        //     // NOTE: We disable the url handling here so that css-loader doesn't
-        //     // try to search for the font files inside source font dirs
-        //     { loader: 'css-loader', options: { url: false } },
-        //     'webfonts-loader'
-        //   ]
-        // }),
+          "css-loader",
+          "webfonts-loader",
+        ],
       },
-
-      // PUG
-      {
-        test: /\.pug$/,
-        include: getAbsPath('src'),
-        use: ['pug-loader']
-      }
     ],
   },
 
   plugins: [
     // contentash is the file's checksum, useful for caching purposes
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: "[name].[contenthash].css",
     }),
     new HtmlWebpackPlugin({
-      inject: 'body',
-      template: getAbsPath('src/index.html'),
-      filename: 'index.html'
-    })
+      inject: "body",
+      template: getAbsPath("src/index.html"),
+      filename: "index.html",
+    }),
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
 
     // Where to look when using things like "import 'lodash';"
-    modules: [getAbsPath('node_modules')]
-  }
+    modules: [getAbsPath("node_modules")],
+  },
 };
