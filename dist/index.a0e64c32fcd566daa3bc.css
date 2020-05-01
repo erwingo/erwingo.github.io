@@ -46,7 +46,7 @@ body {
     background-color: #fff;
     content: ''; }
   .App__title__hl {
-    color: #d55454; }
+    color: #ff8159; }
 
 .App__socialitems__item {
   display: inline-block;
@@ -77,8 +77,8 @@ body {
 
 @font-face {
 	font-family: "icons";
-	src: url("/fonts.icons.ab968702ac5f42cb7fc8.woff") format("woff"),
-url("/fonts.icons.ab968702ac5f42cb7fc8.woff2") format("woff2");
+	src: url("/fonts.icons.7c4bbed8aa03fc36aba0.woff") format("woff"),
+url("/fonts.icons.7c4bbed8aa03fc36aba0.woff2") format("woff2");
 }
 
 .icon {
@@ -92,15 +92,18 @@ url("/fonts.icons.ab968702ac5f42cb7fc8.woff2") format("woff2");
 	vertical-align: top;
 }
 
-.icon.is-email-button:before {
+.icon.is-blog:before {
 	content: "\f101";
 }
-.icon.is-github:before {
+.icon.is-email-button:before {
 	content: "\f102";
 }
-.icon.is-linkedin:before {
+.icon.is-github:before {
 	content: "\f103";
+}
+.icon.is-linkedin:before {
+	content: "\f104";
 }
 
 
-/*# sourceMappingURL=index.a8767d5b970eb14879cb.css.map*/
+/*# sourceMappingURL=index.a0e64c32fcd566daa3bc.css.map*/
