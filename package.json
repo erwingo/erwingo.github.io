@@ -6,7 +6,9 @@
     "dev": "NODE_ENV=dev webpack-dev-server --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
-    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.js"
+    "build": "npm run clean && NODE_ENV=production webpack --config webpack.config.js",
+    "upload-files": "ssh goerwin@goerwin.co 'rm -rf /var/www/goerwin.co/html && mkdir /var/www/goerwin.co/html' && scp -r ./dist/* goerwin@goerwin.co:/var/www/goerwin.co/html",
+    "deploy": "npm run build && npm run upload-files"
   },
   "repository": {
     "type": "git",
