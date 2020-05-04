@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Personal website",
   "scripts": {
-    "dev": "site-generator -i src -s",
-    "build": "site-generator -i src -o dist",
+    "build": "site-generator build",
+    "build-dev": "site-generator build -e development",
+    "dev": "site-generator dev",
+    "prod": "site-generator dev -e production",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "upload-files": "ssh goerwin@goerwin.co 'rm -rf /var/www/goerwin.co/html && mkdir /var/www/goerwin.co/html' && scp -r ./dist/* goerwin@goerwin.co:/var/www/goerwin.co/html",
     "deploy": "npm run build && npm run upload-files"
   },
@@ -15,7 +18,11 @@
   "author": "Erwin Gaitan O <erwingaitano@gmail.com>",
   "license": "MIT",
   "homepage": "https://goerwin.co",
-  "devDependencies": {
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "site-generator": "git+https://github.com/goerwin/site-generator.git"
   }
 }
