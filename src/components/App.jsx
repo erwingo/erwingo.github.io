@@ -10,6 +10,10 @@ function App({ children }) {
     return (
         <>
             <Helmet titleTemplate="%s | GOErwin">
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+                />
                 <link href={favicon} rel="shortcut icon" />
                 <script
                     async
