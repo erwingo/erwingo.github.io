@@ -1,9 +1,9 @@
-const React = require('react');
-const styles = require('./Presentation.module.css');
-const githubIcon = require('../images/icons/github.svg');
-const linkedinIcon = require('../images/icons/linkedin.svg');
-const emailIcon = require('../images/icons/email.svg');
-const blogIcon = require('../images/icons/blog.svg');
+import React from 'react';
+import styles from './Presentation.module.scss';
+import githubIcon from '../images/icons/github.svg';
+import linkedinIcon from '../images/icons/linkedin.svg';
+import emailIcon from '../images/icons/email.svg';
+import blogIcon from '../images/icons/blog.svg';
 
 const items = [
     {
@@ -30,7 +30,7 @@ const items = [
     },
 ];
 
-function Presentation() {
+export default function Presentation() {
     return (
         <div className={styles.container}>
             <p className={styles.title}>
@@ -47,5 +47,3 @@ function Presentation() {
         </div>
     );
 }
-
-module.exports = Presentation;

@@ -1,0 +1,30 @@
+# # TODO:
+
+# name: Deploy /docs files
+
+# on:
+#   push:
+#     branches:
+#       - master
+# env:
+#   GITHUB_TOKEN: ${{ secrets.github_token }}
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         nodeVersion: [10.x]
+
+#     steps:
+#     - uses: actions/checkout@v1
+#     - name: Use Node.js ${{ matrix.nodeVersion }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: ${{ matrix.nodeVersion }}
+#     - run: npm install
+#     - run: git config user.email "erwingaitano@gmail.com"
+#     - run: git config user.name "Deployer"
+#     - run: git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+#     - run: git checkout master
+#     - run: npm run deploy

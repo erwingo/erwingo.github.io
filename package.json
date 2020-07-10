@@ -5,7 +5,7 @@
   "scripts": {
     "build": "site-generator build",
     "build-dev": "site-generator build -e development",
-    "dev": "site-generator dev",
+    "dev": "site-generator dev --typescript",
     "prod": "site-generator dev -e production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "upload-files": "ssh goerwin@goerwin.co 'rm -rf /var/www/goerwin.co/html && mkdir /var/www/goerwin.co/html' && scp -r ./dist/* goerwin@goerwin.co:/var/www/goerwin.co/html",
@@ -19,10 +19,19 @@
   "license": "MIT",
   "homepage": "https://goerwin.co",
   "dependencies": {
+    "jsonschema": "^1.2.6",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "site-generator": "git+https://github.com/goerwin/site-generator.git"
+    "react-toastify": "^6.0.8",
+    "react-useportal": "^1.0.13",
+    "site-generator": "git+https://github.com/goerwin/site-generator.git",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.0.0"
   }
 }
