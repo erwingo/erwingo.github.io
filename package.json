@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Personal website",
   "scripts": {
-    "build": "site-generator build --typescript",
+    "build": "npm run test && site-generator build --typescript",
     "build-dev": "site-generator build --typescript -e development",
     "dev": "site-generator dev --typescript",
     "prod": "site-generator dev --typescript -e production",
