@@ -5,20 +5,16 @@ import Card from '../Card/Card';
 import Modal from '../Modal/Modal';
 import StaticGrid from '../StaticGrid/StaticGrid';
 import 'react-toastify/dist/ReactToastify.css';
-import { Validator } from 'jsonschema';
 import { CARD_MODAL_OPTIONS } from '../../_constants';
+import { Layout } from '../../types';
+import {
+    getQueryParamValue,
+    getLayoutFromUrlQueryParams,
+    encodeCardUrls,
+    encodeLayout,
+} from '../../_helpers/layout';
 
 import './App.scss';
-
-type LayoutItem = {
-    i: string;
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-    url?: string;
-};
-type Layout = LayoutItem[];
 
 const CARD_OPTIONS = [
     { title: 'Add Card', value: CARD_MODAL_OPTIONS.addCard },
@@ -37,67 +33,7 @@ const TWITCH_OPTIONS = [
     { title: 'Open Stream Chat', value: CARD_MODAL_OPTIONS.twitchChat },
 ];
 
-const getQueryParamValue = (search: string, query: string) => {
-    const urlparams = new URLSearchParams(search);
-    const value = urlparams.get(query);
-
-    return value !== null ? Number(value) : null;
-};
-
-const getLayoutFromUrlQueryParams = (search: string) => {
-    const urlParams = new URLSearchParams(search);
-    const cardUrls = urlParams.get('cardUrls');
-    const layout = urlParams
-        .get('layout')
-        ?.replace(/_/g, '[')
-        .replace(/b/g, ']')
-        .replace(/c/g, '{')
-        .replace(/d/g, '}')
-        .replace(/e/g, ':')
-        .replace(/f/g, ',')
-        .replace(/g/g, '"');
-
-    const layoutItemSchema = {
-        id: 'LayoutItem',
-        type: 'object',
-        i: { type: 'string' },
-        x: { type: 'number' },
-        y: { type: 'number' },
-        w: { type: 'number' },
-        h: { type: 'number' },
-    };
-
-    const layoutSchema = {
-        id: 'Layout',
-        type: 'array',
-        items: { type: '/LayoutItem' },
-        required: ['items'],
-    };
-
-    try {
-        const v = new Validator();
-        const layoutParsed = layout && JSON.parse(layout);
-        const parsedCardUrls = cardUrls && JSON.parse(cardUrls);
-        v.addSchema(layoutItemSchema);
-
-        if (!v.validate(layoutParsed, layoutSchema).valid) {
-            return null;
-        }
-
-        return (layoutParsed as Layout).map((el, idx) => ({
-            ...el,
-            i: `${idx}`,
-            url: parsedCardUrls?.[idx] as string,
-        }));
-    } catch (e) {
-        return null;
-    }
-};
-
 export default function App() {
-    getQueryParamValue('werwer', 'uuu');
-    getLayoutFromUrlQueryParams('werwer');
-
     const [marginH, setMarginH] = useState(5);
     const [marginV, setMarginV] = useState(5);
     const [cols, setCols] = useState(12);
@@ -124,32 +60,11 @@ export default function App() {
 
     // save layout
     useEffect(() => {
-        const layoutStr = encodeURIComponent(
-            JSON.stringify(
-                layout.map((el) => ({
-                    x: el.x,
-                    y: el.y,
-                    h: el.h,
-                    w: el.w,
-                    i: el.i,
-                }))
-            )
-                .replace(/\[/g, '_')
-                .replace(/\]/g, 'b')
-                .replace(/\{/g, 'c')
-                .replace(/\}/g, 'd')
-                .replace(/\:/g, 'e')
-                .replace(/\,/g, 'f')
-                .replace(/\"/g, 'g')
-        );
-
         const url =
             `${window.location.origin}${window.location.pathname}?` +
             `mh=${marginH}&mv=${marginV}&c=${cols}&r=${rows}` +
-            `&cardUrls=${encodeURIComponent(
-                JSON.stringify(layout.map((el) => el.url))
-            )}` +
-            `&layout=${layoutStr}`;
+            `&cardUrls=${encodeCardUrls(layout.map((el) => el.url))}` +
+            `&layout=${encodeLayout(layout)}`;
 
         window.history.pushState(null, document.title, url);
     }, [layout, marginV, marginH, cols, rows]);

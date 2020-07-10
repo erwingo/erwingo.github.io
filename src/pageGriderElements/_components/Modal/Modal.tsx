@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import usePortal from 'react-useportal';
 import ModalInput, { Props as ModalInputProps } from './ModalInput';
 import ModalOptions, { Props as ModalOptionsProps } from './ModalOptions';
-import './Modal.css';
+import './Modal.scss';
 
 type Props = {
   onClose: () => void,

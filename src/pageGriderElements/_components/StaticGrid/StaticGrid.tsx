@@ -389,6 +389,7 @@ export default function StaticGrid(props: Props) {
         </div>
       );
     }));
+    // TODO: DO I NEED TO CHECK FOR THE PROPS? ISN'T THIS AUTOMATIC?
   }, [props.layout, props.children, update]);
 
   return (
