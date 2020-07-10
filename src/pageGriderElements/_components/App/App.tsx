@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Validator } from 'jsonschema';
 import { CARD_MODAL_OPTIONS } from '../../_constants';
 
-import './App.css';
+import './App.scss';
 
 type LayoutItem = {
     i: string;

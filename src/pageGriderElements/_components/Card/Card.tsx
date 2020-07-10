@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import './Card.css';
+import './Card.scss';
 
 export type Props = {
   onPlaceholderClick: () => void;

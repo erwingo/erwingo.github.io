@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { getGridItemPosDim, getGridDimensions } from '../../_helpers/grid';
-import './StaticGrid.css';
+import './StaticGrid.scss';
 
 type Position = { x: number, y: number };
 type Size = { w: number, h: number };
