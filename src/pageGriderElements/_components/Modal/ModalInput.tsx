@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef, useEffect, Fragment } from 'react';
 
 export type Props = {
-  onSubmit: (e: string) => void,
+  onSubmit: (e: string) => void;
   ph: string;
 };
 
@@ -37,7 +37,9 @@ export default function ModalInput(props: Props) {
             placeholder={props.ph}
             value={url}
           />
-          <button className="Modal__content__form__submit" type="submit">Go</button>
+          <button className="Modal__content__form__submit" type="submit">
+            Go
+          </button>
         </form>
       </div>
     </Fragment>

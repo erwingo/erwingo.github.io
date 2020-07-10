@@ -1,82 +1,82 @@
 .container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
-    color: #fff;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  color: #fff;
 }
 
 .title {
-    display: inline-block;
-    position: relative;
-    margin: 0 0 16px;
-    font-size: 72px;
-    font-weight: bold;
-    line-height: 1.25;
-    text-align: center;
+  display: inline-block;
+  position: relative;
+  margin: 0 0 16px;
+  font-size: 72px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center;
 }
 
 .title::after {
-    display: block;
-    width: 65%;
-    height: 1px;
-    margin: 0 auto;
-    background-color: #fff;
-    content: '';
+  display: block;
+  width: 65%;
+  height: 1px;
+  margin: 0 auto;
+  background-color: #fff;
+  content: '';
 }
 
 @media (max-width: 420px) {
-    .title {
-        font-size: 42px;
-    }
+  .title {
+    font-size: 42px;
+  }
 }
 
 .titleHl {
-    color: #ff8159;
+  color: #ff8159;
 }
 
 .socialItems a {
-    display: inline-block;
-    position: relative;
-    top: -2px;
-    margin: 0 8px;
-    padding: 2px 2px 0;
-    color: #fff;
-    width: 50px;
-    height: 50px;
-    text-decoration: none;
-    vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  margin: 0 8px;
+  padding: 2px 2px 0;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  vertical-align: middle;
 }
 
 .socialItems a::before {
-    position: absolute;
-    bottom: -14px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    transform: translate(0, 3px);
-    transition: 0.3s;
-    background-color: #fff;
-    content: '';
-    opacity: 0;
-    visibility: hidden;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transform: translate(0, 3px);
+  transition: 0.3s;
+  background-color: #fff;
+  content: '';
+  opacity: 0;
+  visibility: hidden;
 }
 
 .socialItems a:hover::before {
-    transform: translate(0, 0);
-    opacity: 1;
-    visibility: visible;
+  transform: translate(0, 0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .socialItems a img {
-    display: block;
-    max-width: 100%;
-    height: 100%;
+  display: block;
+  max-width: 100%;
+  height: 100%;
 }

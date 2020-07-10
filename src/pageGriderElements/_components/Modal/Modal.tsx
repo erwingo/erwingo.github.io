@@ -6,9 +6,9 @@ import ModalOptions, { Props as ModalOptionsProps } from './ModalOptions';
 import './Modal.scss';
 
 type Props = {
-  onClose: () => void,
-  inputModal?: ModalInputProps,
-  optionsModal?: ModalOptionsProps
+  onClose: () => void;
+  inputModal?: ModalInputProps;
+  optionsModal?: ModalOptionsProps;
 };
 
 export default function Modal(props: Props) {
@@ -32,8 +32,8 @@ export default function Modal(props: Props) {
   return (
     <Portal>
       <div className="Modal" ref={modalRef}>
-        { props.inputModal && <ModalInput {...props.inputModal} /> }
-        { props.optionsModal && <ModalOptions {...props.optionsModal} />}
+        {props.inputModal && <ModalInput {...props.inputModal} />}
+        {props.optionsModal && <ModalOptions {...props.optionsModal} />}
       </div>
     </Portal>
   );

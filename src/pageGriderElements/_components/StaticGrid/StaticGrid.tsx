@@ -3,56 +3,61 @@ import { useState, useEffect, useRef } from 'react';
 import { getGridItemPosDim, getGridDimensions } from '../../_helpers/grid';
 import './StaticGrid.scss';
 
-type Position = { x: number, y: number };
-type Size = { w: number, h: number };
+type Position = { x: number; y: number };
+type Size = { w: number; h: number };
 
-type LayoutItem = { i: string, x: number, y: number, w: number, h: number };
-type Layout = LayoutItem[]
+type LayoutItem = { i: string; x: number; y: number; w: number; h: number };
+type Layout = LayoutItem[];
 
 export type Props = {
-  cols: number,
-  rows: number,
-  children: JSX.Element[],
-  layout?: Layout,
-  marginH?: number,
-  marginV?: number,
-  onItemDrag?: (values: { itemId: string, x: number, y: number }) => void,
-  onItemResize?: (values: { itemId: string, w: number, h: number }) => void,
-  onBoxCreated?: (values: { x: number, y: number, w: number, h: number }) => void
+  cols: number;
+  rows: number;
+  children: JSX.Element[];
+  layout?: Layout;
+  marginH?: number;
+  marginV?: number;
+  onItemDrag?: (values: { itemId: string; x: number; y: number }) => void;
+  onItemResize?: (values: { itemId: string; w: number; h: number }) => void;
+  onBoxCreated?: (values: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  }) => void;
 };
 
 type Main = {
-  itemW: number,
-  itemH: number,
-  isMousedown: boolean,
-  matrix: number[][],
-  start: Position,
-  absoluteStart: Position,
+  itemW: number;
+  itemH: number;
+  isMousedown: boolean;
+  matrix: number[][];
+  start: Position;
+  absoluteStart: Position;
   drag?: {
-    itemEl: HTMLElement,
-    item: LayoutItem,
-    origX: number,
-    origY: number,
-    startX: number,
-    startY: number
-  },
+    itemEl: HTMLElement;
+    item: LayoutItem;
+    origX: number;
+    origY: number;
+    startX: number;
+    startY: number;
+  };
   resize?: {
-    itemEl: HTMLElement,
-    item: LayoutItem,
-    origW: number,
-    origH: number,
-    startX: number,
-    startY: number
-  },
-  layout?: Layout,
-  marginH: number,
-  marginV: number,
-  cols: number,
-  rows: number,
-  widthGap: number,
-  heightGap: number,
-  absoluteSize: Size
-}
+    itemEl: HTMLElement;
+    item: LayoutItem;
+    origW: number;
+    origH: number;
+    startX: number;
+    startY: number;
+  };
+  layout?: Layout;
+  marginH: number;
+  marginV: number;
+  cols: number;
+  rows: number;
+  widthGap: number;
+  heightGap: number;
+  absoluteSize: Size;
+};
 
 const bgColors = [
   '#800000',
@@ -64,14 +69,16 @@ const bgColors = [
   '#aaffc3',
   '#9A6324',
   '#808000',
-  '#e6beff'
+  '#e6beff',
 ];
 
 export default function StaticGrid(props: Props) {
   const newCols = props.cols;
   const newRows = props.rows;
   const containerRef = useRef(null);
-  const mainRef = useRef({ matrix: new Array(newRows).fill(new Array(newCols).fill(0)) } as Main);
+  const mainRef = useRef({
+    matrix: new Array(newRows).fill(new Array(newCols).fill(0)),
+  } as Main);
   const [update, setUpdate] = useState(false);
   const [children, setChildren] = useState([] as JSX.Element[]);
   const matrix = mainRef.current.matrix;
@@ -86,8 +93,8 @@ export default function StaticGrid(props: Props) {
   mainRef.current.layout = props.layout;
 
   const getCleanMatrix = () => {
-    return mainRef.current.matrix.map(el => el.map(() => 0));
-  }
+    return mainRef.current.matrix.map((el) => el.map(() => 0));
+  };
 
   const setGridDimensions = () => {
     const containerEl = containerRef.current as HTMLElement | null;
@@ -97,16 +104,24 @@ export default function StaticGrid(props: Props) {
 
     if (!clientWidth || !clientHeight) return;
 
-    const { dimension: width, gap: widthGap } = getGridDimensions(clientWidth, cols, marginH);
+    const { dimension: width, gap: widthGap } = getGridDimensions(
+      clientWidth,
+      cols,
+      marginH
+    );
     mainRef.current.widthGap = widthGap;
     mainRef.current.itemW = width;
 
-    const { dimension: height, gap: heightGap } = getGridDimensions(clientHeight, rows, marginV);
+    const { dimension: height, gap: heightGap } = getGridDimensions(
+      clientHeight,
+      rows,
+      marginV
+    );
     mainRef.current.heightGap = heightGap;
     mainRef.current.itemH = height;
 
-    setUpdate(update => !update);
-  }
+    setUpdate((update) => !update);
+  };
 
   useEffect(() => {
     setGridDimensions();
@@ -118,7 +133,7 @@ export default function StaticGrid(props: Props) {
     const IS_DRAGGING = 'is-dragging';
 
     const handleItemDraggerMouseDown = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement);
+      const el = e.target as HTMLElement;
       const itemEl = el.parentElement!;
 
       if (!el.classList.contains('StaticGrid__item__dragger')) return;
@@ -130,7 +145,7 @@ export default function StaticGrid(props: Props) {
 
       if (!itemId) return;
 
-      const item = mainRef.current.layout?.find(el => el.i === itemId)!;
+      const item = mainRef.current.layout?.find((el) => el.i === itemId)!;
 
       mainRef.current.drag = {
         itemEl,
@@ -138,9 +153,9 @@ export default function StaticGrid(props: Props) {
         origX: item.x,
         origY: item.y,
         startX: e.clientX,
-        startY: e.clientY
+        startY: e.clientY,
       };
-    }
+    };
 
     const handleItemDraggerMouseUp = (e: MouseEvent) => {
       if (!mainRef.current.drag) return;
@@ -149,7 +164,7 @@ export default function StaticGrid(props: Props) {
       mainRef.current.drag = undefined;
 
       e.stopPropagation();
-    }
+    };
 
     const handleItemDraggerMouseMove = (e: MouseEvent) => {
       if (!mainRef.current.drag) return;
@@ -157,9 +172,17 @@ export default function StaticGrid(props: Props) {
       e.stopPropagation();
       const { itemW, itemH, marginH, marginV } = mainRef.current;
 
-      const { item, startX, startY, origX: originalX, origY: originalY } = mainRef.current.drag;
-      let newPositionX = Math.floor((e.clientX - startX) / (itemW + marginH)) + originalX;
-      let newPositionY = Math.floor((e.clientY - startY) / (itemH + marginV)) + originalY;
+      const {
+        item,
+        startX,
+        startY,
+        origX: originalX,
+        origY: originalY,
+      } = mainRef.current.drag;
+      let newPositionX =
+        Math.floor((e.clientX - startX) / (itemW + marginH)) + originalX;
+      let newPositionY =
+        Math.floor((e.clientY - startY) / (itemH + marginV)) + originalY;
 
       if (newPositionX < 0) newPositionX = 0;
       else if (newPositionX + item.w > newCols) newPositionX = newCols - item.w;
@@ -167,8 +190,12 @@ export default function StaticGrid(props: Props) {
       if (newPositionY < 0) newPositionY = 0;
       else if (newPositionY + item.h > newRows) newPositionY = newRows - item.h;
 
-      props.onItemDrag?.({ itemId: item.i, x: newPositionX, y: newPositionY });
-    }
+      props.onItemDrag?.({
+        itemId: item.i,
+        x: newPositionX,
+        y: newPositionY,
+      });
+    };
 
     containerEl?.addEventListener('mousedown', handleItemDraggerMouseDown);
     containerEl?.addEventListener('mousemove', handleItemDraggerMouseMove);
@@ -178,7 +205,7 @@ export default function StaticGrid(props: Props) {
       containerEl?.removeEventListener('mousedown', handleItemDraggerMouseDown);
       containerEl?.removeEventListener('mousemove', handleItemDraggerMouseMove);
       containerEl?.removeEventListener('mouseup', handleItemDraggerMouseUp);
-    }
+    };
   }, []);
 
   // ItemResizer handlers
@@ -187,7 +214,7 @@ export default function StaticGrid(props: Props) {
     const IS_RESIZING = 'is-resizing';
 
     const handleItemResizerMouseDown = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement);
+      const el = e.target as HTMLElement;
       const itemEl = el.parentElement!;
 
       if (!el.classList.contains('StaticGrid__item__resizer')) return;
@@ -200,7 +227,7 @@ export default function StaticGrid(props: Props) {
 
       if (!itemId) return;
 
-      const item = mainRef.current.layout?.find(el => el.i === itemId)!;
+      const item = mainRef.current.layout?.find((el) => el.i === itemId)!;
 
       mainRef.current.resize = {
         itemEl,
@@ -208,10 +235,9 @@ export default function StaticGrid(props: Props) {
         origW: item.w,
         origH: item.h,
         startX: e.clientX,
-        startY:
-        e.clientY
+        startY: e.clientY,
       };
-    }
+    };
 
     const handleItemResizerMouseUp = (e: MouseEvent) => {
       if (!mainRef.current.resize) return;
@@ -220,7 +246,7 @@ export default function StaticGrid(props: Props) {
       mainRef.current.resize = undefined;
 
       e.stopPropagation();
-    }
+    };
 
     const handleItemResizerMouseMove = (e: MouseEvent) => {
       if (!mainRef.current.resize) return;
@@ -228,19 +254,28 @@ export default function StaticGrid(props: Props) {
       e.stopPropagation();
 
       const { itemW, itemH, marginH, marginV, cols, rows } = mainRef.current;
-      const { item, startX, startY, origW: originalW, origH: originalH } = mainRef.current.resize;
-      const newWidth = Math.ceil((e.clientX - startX) / (itemW + marginH)) + originalW;
-      const newHeight = Math.ceil((e.clientY - startY) / (itemH + marginV)) + originalH;
+      const {
+        item,
+        startX,
+        startY,
+        origW: originalW,
+        origH: originalH,
+      } = mainRef.current.resize;
+      const newWidth =
+        Math.ceil((e.clientX - startX) / (itemW + marginH)) + originalW;
+      const newHeight =
+        Math.ceil((e.clientY - startY) / (itemH + marginV)) + originalH;
 
       if (
         newWidth <= 0 ||
         newHeight <= 0 ||
         newWidth + item.x > cols ||
         newHeight + item.y > rows
-      ) return;
+      )
+        return;
 
       props.onItemResize?.({ itemId: item.i, w: newWidth, h: newHeight });
-    }
+    };
 
     containerEl?.addEventListener('mousedown', handleItemResizerMouseDown);
     containerEl?.addEventListener('mousemove', handleItemResizerMouseMove);
@@ -250,7 +285,7 @@ export default function StaticGrid(props: Props) {
       containerEl?.removeEventListener('mousedown', handleItemResizerMouseDown);
       containerEl?.removeEventListener('mousemove', handleItemResizerMouseMove);
       containerEl?.removeEventListener('mouseup', handleItemResizerMouseUp);
-    }
+    };
   }, []);
 
   // GridItem handlers
@@ -263,19 +298,20 @@ export default function StaticGrid(props: Props) {
 
       if (
         !mainRef.current.absoluteSize ||
-        mainRef.current.absoluteSize.w === 0 && mainRef.current.absoluteSize.h === 0
+        (mainRef.current.absoluteSize.w === 0 &&
+          mainRef.current.absoluteSize.h === 0)
       ) {
         return;
       }
 
       props.onBoxCreated?.({
         ...mainRef.current.absoluteStart,
-        ...mainRef.current.absoluteSize
+        ...mainRef.current.absoluteSize,
       });
 
       mainRef.current.absoluteStart = { x: 0, y: 0 };
       mainRef.current.absoluteSize = { w: 0, h: 0 };
-    }
+    };
 
     const handleMouseDown = (e: MouseEvent) => {
       if ((e.target as HTMLElement).closest('.StaticGrid__item')) return;
@@ -285,7 +321,7 @@ export default function StaticGrid(props: Props) {
       mainRef.current.absoluteSize = { w: 0, h: 0 };
 
       mainRef.current.start = { x: e.clientX, y: e.clientY };
-    }
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!mainRef.current.isMousedown) return;
@@ -305,41 +341,50 @@ export default function StaticGrid(props: Props) {
       let absRows = 0;
 
       do {
-        const rowSelected = startY + i < newRows && startY + i >= 0 ?
-          (absRows++, startY + i) :
-          startY + i >= 0 ? newRows - 1 : 0;
+        const rowSelected =
+          startY + i < newRows && startY + i >= 0
+            ? (absRows++, startY + i)
+            : startY + i >= 0
+            ? newRows - 1
+            : 0;
 
         rowsSelected > 0 ? i++ : i--;
 
         let j = 0;
         absCols = 0;
         do {
-          const colSelected = startX + j < newCols && startX + j >= 0 ?
-            (absCols++, startX + j) :
-            startX + j >= 0 ? newCols - 1 : 0;
+          const colSelected =
+            startX + j < newCols && startX + j >= 0
+              ? (absCols++, startX + j)
+              : startX + j >= 0
+              ? newCols - 1
+              : 0;
 
           newMatrix[rowSelected][colSelected] = 1;
           colsSelected > 0 ? j++ : j--;
         } while (j !== colsSelected);
       } while (i !== rowsSelected);
 
-      mainRef.current.absoluteStart = newMatrix.reduce((prev: Position, curr, idx) => {
-        if (prev.x !== -1) {
+      mainRef.current.absoluteStart = newMatrix.reduce(
+        (prev: Position, curr, idx) => {
+          if (prev.x !== -1) {
+            return prev;
+          }
+
+          if (curr.findIndex((el) => el !== 0) >= 0) {
+            prev.x = curr.findIndex((el) => el !== 0);
+            prev.y = idx;
+          }
+
           return prev;
-        }
-
-        if (curr.findIndex((el => el !== 0)) >= 0) {
-          prev.x = curr.findIndex((el => el !== 0));
-          prev.y = idx;
-        }
-
-        return prev;
-      }, { x: -1, y: -1 });
+        },
+        { x: -1, y: -1 }
+      );
 
       mainRef.current.absoluteSize = { w: absCols, h: absRows };
       mainRef.current.matrix = newMatrix;
-      setUpdate(update => !update);
-    }
+      setUpdate((update) => !update);
+    };
 
     containerEl?.addEventListener('mousedown', handleMouseDown);
     containerEl?.addEventListener('mousemove', handleMouseMove);
@@ -349,8 +394,8 @@ export default function StaticGrid(props: Props) {
       containerEl?.removeEventListener('mousedown', handleMouseDown);
       containerEl?.removeEventListener('mousemove', handleMouseMove);
       containerEl?.removeEventListener('mouseup', handleMouseUp);
-    }
-  })
+    };
+  });
 
   // Resize window handler
   useEffect(() => {
@@ -360,53 +405,88 @@ export default function StaticGrid(props: Props) {
 
     return () => {
       window.removeEventListener('resize', setGridDimensions);
-    }
+    };
   }, []);
 
   // set children
   useEffect(() => {
-    setChildren(props.children.map((el, idx) => {
-      const layoutItem = props.layout?.find(layoutItem => layoutItem.i === el.key)!;
-      const { widthGap, heightGap, itemW, itemH, marginH, marginV } = mainRef.current;
-      const elementX = getGridItemPosDim(layoutItem.x, itemW, layoutItem.w, widthGap, marginH);
-      const elementY = getGridItemPosDim(layoutItem.y, itemH, layoutItem.h, heightGap, marginV);
+    setChildren(
+      props.children.map((el, idx) => {
+        const layoutItem = props.layout?.find(
+          (layoutItem) => layoutItem.i === el.key
+        )!;
+        const {
+          widthGap,
+          heightGap,
+          itemW,
+          itemH,
+          marginH,
+          marginV,
+        } = mainRef.current;
+        const elementX = getGridItemPosDim(
+          layoutItem.x,
+          itemW,
+          layoutItem.w,
+          widthGap,
+          marginH
+        );
+        const elementY = getGridItemPosDim(
+          layoutItem.y,
+          itemH,
+          layoutItem.h,
+          heightGap,
+          marginV
+        );
 
-      return (
-        <div
-          className="StaticGrid__item"
-          style={{
-            backgroundColor: bgColors[idx % bgColors.length],
-            top: elementY.pos,
-            left: elementX.pos,
-            width: elementX.dim,
-            height: elementY.dim
-          }}
-          key={el.key!}
-        >
-          {el}
-          <div data-id={el.key} className="StaticGrid__item__dragger js-item-dragger" />
-          <div data-id={el.key} className="StaticGrid__item__resizer js-item-resizer" />
-        </div>
-      );
-    }));
+        return (
+          <div
+            className="StaticGrid__item"
+            style={{
+              backgroundColor: bgColors[idx % bgColors.length],
+              top: elementY.pos,
+              left: elementX.pos,
+              width: elementX.dim,
+              height: elementY.dim,
+            }}
+            key={el.key!}
+          >
+            {el}
+            <div
+              data-id={el.key}
+              className="StaticGrid__item__dragger js-item-dragger"
+            />
+            <div
+              data-id={el.key}
+              className="StaticGrid__item__resizer js-item-resizer"
+            />
+          </div>
+        );
+      })
+    );
     // TODO: DO I NEED TO CHECK FOR THE PROPS? ISN'T THIS AUTOMATIC?
   }, [props.layout, props.children, update]);
 
   return (
     <div className="StaticGrid" ref={containerRef}>
-      { itemW && itemH && matrix.map((row, i) => row.map((cell, j) =>
-        <div
-          key={`${i},${j}`}
-          className="StaticGrid__ph"
-          style={{
-            marginLeft: props.marginH,
-            marginTop: props.marginV,
-            width: getGridItemPosDim(j, itemW, 1, widthGap, props.marginH).dim,
-            height: getGridItemPosDim(i, itemH, 1, heightGap, props.marginV).dim,
-            background: cell === 1 ? 'rgba(255, 255, 255, 0.3)' : ''
-          }}
-        />
-      ))}
+      {itemW &&
+        itemH &&
+        matrix.map((row, i) =>
+          row.map((cell, j) => (
+            <div
+              key={`${i},${j}`}
+              className="StaticGrid__ph"
+              style={{
+                marginLeft: props.marginH,
+                marginTop: props.marginV,
+                width: getGridItemPosDim(j, itemW, 1, widthGap, props.marginH)
+                  .dim,
+                height: getGridItemPosDim(i, itemH, 1, heightGap, props.marginV)
+                  .dim,
+                background: cell === 1 ? 'rgba(255, 255, 255, 0.3)' : '',
+              }}
+            />
+          ))
+        )}
       {children}
     </div>
   );

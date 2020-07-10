@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "Personal website",
   "scripts": {
-    "build": "site-generator build",
-    "build-dev": "site-generator build -e development",
+    "build": "site-generator build --typescript",
+    "build-dev": "site-generator build --typescript -e development",
     "dev": "site-generator dev --typescript",
-    "prod": "site-generator dev -e production",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "upload-files": "ssh goerwin@goerwin.co 'rm -rf /var/www/goerwin.co/html && mkdir /var/www/goerwin.co/html' && scp -r ./dist/* goerwin@goerwin.co:/var/www/goerwin.co/html",
-    "deploy": "npm run build && npm run upload-files"
+    "prod": "site-generator dev --typescript -e production",
+    "test": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +18,7 @@
   "homepage": "https://goerwin.co",
   "dependencies": {
     "jsonschema": "^1.2.6",
+    "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

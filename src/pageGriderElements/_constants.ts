@@ -9,5 +9,5 @@ export const CARD_MODAL_OPTIONS = {
   setCols: 'setCols',
   setRows: 'setRows',
   setMarginH: 'setMarginH',
-  setMarginV: 'setMarginV'
+  setMarginV: 'setMarginV',
 };
