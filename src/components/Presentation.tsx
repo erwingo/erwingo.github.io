@@ -26,7 +26,7 @@ const items = [
   {
     name: 'Blog',
     icon: blogIcon,
-    href: 'https://blog.goerwin.co',
+    href: '/blog',
   },
 ];
 
