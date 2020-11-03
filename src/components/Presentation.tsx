@@ -16,7 +16,7 @@ const items = [
     name: 'LinkedIn',
     icon: linkedinIcon,
     target: '_blank',
-    href: 'https://www.linkedin.com/in/erwin-gait%C3%A1n-ospino-61438453/',
+    href: 'https://www.linkedin.com/in/goerwin',
   },
   {
     name: 'Email',
