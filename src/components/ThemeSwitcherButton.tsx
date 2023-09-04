@@ -16,7 +16,7 @@ function getButtonTitle(theme: string) {
 export default function ThemeSwitcherButton() {
   const { theme, toggleTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
-  const buttonTitle = getButtonTitle(theme);
+  const buttonTitle = isLoading ? 'none' : getButtonTitle(theme);
 
   // NOTE: Next Client components are still pre-rendered on the server
   // so that static html is generated for them and send out to the client.

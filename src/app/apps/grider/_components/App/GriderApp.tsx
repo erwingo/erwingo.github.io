@@ -1,20 +1,21 @@
+'use client';
+
 import * as React from 'react';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { CARD_MODAL_OPTIONS } from '../../_constants';
+import {
+  encodeCardUrls,
+  encodeLayout,
+  getLayoutFromUrlQueryParams,
+  getQueryParamValue,
+} from '../../_helpers/layout';
+import { Layout } from '../../types';
 import Card from '../Card/Card';
 import Modal from '../Modal/Modal';
 import StaticGrid from '../StaticGrid/StaticGrid';
-import 'react-toastify/dist/ReactToastify.css';
-import { CARD_MODAL_OPTIONS } from '../../_constants';
-import { Layout } from '../../types';
-import {
-  getQueryParamValue,
-  getLayoutFromUrlQueryParams,
-  encodeCardUrls,
-  encodeLayout,
-} from '../../_helpers/layout';
-
-import './App.scss';
+import './App.css';
 
 const CARD_OPTIONS = [
   { title: 'Add Card', value: CARD_MODAL_OPTIONS.addCard },
@@ -33,7 +34,7 @@ const TWITCH_OPTIONS = [
   { title: 'Open Stream Chat', value: CARD_MODAL_OPTIONS.twitchChat },
 ];
 
-export default function App() {
+export default function GriderApp() {
   const [marginH, setMarginH] = useState(5);
   const [marginV, setMarginV] = useState(5);
   const [cols, setCols] = useState(12);
@@ -51,7 +52,7 @@ export default function App() {
     setModal(null);
 
     const initialLayout = getLayoutFromUrlQueryParams(
-      window.location.search
+      window.location.search,
     ) || [{ i: '0', x: 0, y: 0, w: 4, h: 2 }];
 
     mainRef.current.initialLayoutSize = initialLayout.length;
@@ -116,17 +117,17 @@ export default function App() {
 
               setLayout(
                 layout.map((el) =>
-                  el.i !== cardId ? el : { ...el, url: parsedUrl }
-                )
+                  el.i !== cardId ? el : { ...el, url: parsedUrl },
+                ),
               );
               closeModal();
             },
           }}
-        />
+        />,
       );
     } else {
       setLayout(
-        layout.map((el) => (el.i !== cardId ? el : { ...el, url: parsedUrl }))
+        layout.map((el) => (el.i !== cardId ? el : { ...el, url: parsedUrl })),
       );
     }
   };
@@ -164,7 +165,7 @@ export default function App() {
               onSubmit: (value) => handleUrlSubmit(cardId, value),
               ph: 'Enter the Url',
             }}
-          />
+          />,
         );
         break;
       case CARD_MODAL_OPTIONS.setCols:
@@ -178,7 +179,7 @@ export default function App() {
               ph: 'Set Value',
               onSubmit: (val) => handleColsRowsMargins(value, val),
             }}
-          />
+          />,
         );
         break;
       case CARD_MODAL_OPTIONS.addCard:
@@ -213,7 +214,7 @@ export default function App() {
           options: CARD_OPTIONS,
           onOptionSelected: (value) => handleOption(cardId, value),
         }}
-      />
+      />,
     );
   };
 

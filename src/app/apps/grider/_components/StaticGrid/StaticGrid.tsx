@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { getGridItemPosDim, getGridDimensions } from '../../_helpers/grid';
-import './StaticGrid.scss';
+import './StaticGrid.css';
 
 type Position = { x: number; y: number };
 type Size = { w: number; h: number };
@@ -360,7 +360,7 @@ export default function StaticGrid(props: Props) {
               ? newCols - 1
               : 0;
 
-          newMatrix[rowSelected][colSelected] = 1;
+          newMatrix[rowSelected]![colSelected] = 1;
           colsSelected > 0 ? j++ : j--;
         } while (j !== colsSelected);
       } while (i !== rowsSelected);

@@ -1,6 +1,4 @@
 .Card {
-  $parent: &;
-
   &,
   &__iframe {
     position: absolute;
@@ -29,7 +27,7 @@
     height: 20px;
     cursor: context-menu;
 
-    #{$parent}:hover & {
+    .Card:hover & {
       opacity: 1;
     }
   }

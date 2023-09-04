@@ -31,6 +31,7 @@ export function getLayoutFromUrlQueryParams(search: string) {
   };
 
   try {
+    // todo: use Zod?
     const v = new Validator();
     const layoutParsed = decodeLayout(urlParams.get('layout') || '');
     const parsedCardUrls = decodeCardUrls(urlParams.get('cardUrls') || '');
