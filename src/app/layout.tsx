@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <meta
           name="viewport"
@@ -32,8 +32,9 @@ export default function RootLayout({
         {/* <Script>{import('../scripts/global-theme-initializer')}</Script> */}
       </head>
 
+      {/* NOTE: need relative in body and overflow-x-hidden to avoid horizontal scrolling no mobile */}
       <body
-        className={`${inter.className} flex min-h-screen flex-col overflow-x-hidden bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100`}
+        className={`${inter.className} relative flex min-h-screen flex-col overflow-x-hidden bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100`}
       >
         <GradientBackground />
         <Header />
