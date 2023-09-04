@@ -1,0 +1,45 @@
+import Footer from '@/components/Footer';
+import GradientBackground from '@/components/GradientBackground';
+import Header from '@/components/Header';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Erwin - Personal Portfolio',
+  description:
+    'Senior Front-End developer with industry experience since 2012.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0"
+        />
+        {/* this works because of rule "@next/next/no-sync-scripts" is disabled */}
+        <script src="/initializer-theme.js" />
+        {/* <script src={import('@/scripts/global-theme-initializer')} /> */}
+        {/* <Script>{import('@/scripts/global-theme-initializer')}</Script> */}
+        {/* <Script>{import('../scripts/global-theme-initializer')}</Script> */}
+      </head>
+
+      <body
+        className={`${inter.className} flex min-h-screen flex-col overflow-x-hidden bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100`}
+      >
+        <GradientBackground />
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

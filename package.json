@@ -1,36 +1,40 @@
 {
-  "name": "goerwin",
-  "version": "1.0.0",
-  "description": "Personal website",
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "npm run test && site-generator build --typescript",
-    "build-dev": "site-generator build --typescript -e development",
-    "dev": "site-generator dev --typescript",
-    "prod": "site-generator dev --typescript -e production",
-    "test": "prettier --check ."
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/goerwin/website.git"
-  },
-  "author": "Erwin Gaitan O <erwingaitano@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://goerwin.co",
   "dependencies": {
-    "jsonschema": "^1.2.6",
-    "prettier": "^2.0.5",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.0.0",
-    "react-toastify": "^6.0.8",
-    "react-useportal": "^1.0.13",
-    "site-generator": "git+https://github.com/goerwin/site-generator.git",
-    "typescript": "^3.9.6"
+    "@types/node": "20.5.0",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.15",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.13",
+    "framer-motion": "^10.15.1",
+    "gray-matter": "^4.0.3",
+    "next": "13.4.13",
+    "postcss": "8.4.27",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "react-markdown": "^8.0.7",
+    "slugify": "^1.6.6",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/react": "^16.9.41",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-helmet": "^6.0.0"
+    "@tailwindcss/typography": "^0.5.9",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4"
   }
 }

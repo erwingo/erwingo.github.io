@@ -1,0 +1,36 @@
+{
+  "name": "goerwin",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "scripts": {
+    "build": "npm run test && site-generator build --typescript",
+    "build-dev": "site-generator build --typescript -e development",
+    "dev": "site-generator dev --typescript",
+    "prod": "site-generator dev --typescript -e production",
+    "test": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goerwin/website.git"
+  },
+  "author": "Erwin Gaitan O <erwingaitano@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://goerwin.co",
+  "dependencies": {
+    "jsonschema": "^1.2.6",
+    "prettier": "^2.0.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
+    "react-toastify": "^6.0.8",
+    "react-useportal": "^1.0.13",
+    "site-generator": "git+https://github.com/goerwin/site-generator.git",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.0.0"
+  }
+}
