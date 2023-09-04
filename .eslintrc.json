@@ -1,7 +1,8 @@
 {
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
   "rules": {
-    "@next/next/no-sync-scripts": "off",
-    "no-unused-vars": "error"
+    "@next/next/no-sync-scripts": "off"
+    // todo: disabled for now because it's throwing on type definitions of functions
+    // "no-unused-vars": "error"
   }
 }

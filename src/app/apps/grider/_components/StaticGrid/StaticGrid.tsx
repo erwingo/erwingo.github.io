@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import { getGridItemPosDim, getGridDimensions } from '../../_helpers/grid';
+import { useEffect, useRef, useState } from 'react';
+import { getGridDimensions, getGridItemPosDim } from '../../_helpers/grid';
 import './StaticGrid.css';
 
 type Position = { x: number; y: number };
@@ -107,7 +107,7 @@ export default function StaticGrid(props: Props) {
     const { dimension: width, gap: widthGap } = getGridDimensions(
       clientWidth,
       cols,
-      marginH
+      marginH,
     );
     mainRef.current.widthGap = widthGap;
     mainRef.current.itemW = width;
@@ -115,7 +115,7 @@ export default function StaticGrid(props: Props) {
     const { dimension: height, gap: heightGap } = getGridDimensions(
       clientHeight,
       rows,
-      marginV
+      marginV,
     );
     mainRef.current.heightGap = heightGap;
     mainRef.current.itemH = height;
@@ -378,7 +378,7 @@ export default function StaticGrid(props: Props) {
 
           return prev;
         },
-        { x: -1, y: -1 }
+        { x: -1, y: -1 },
       );
 
       mainRef.current.absoluteSize = { w: absCols, h: absRows };
@@ -413,29 +413,23 @@ export default function StaticGrid(props: Props) {
     setChildren(
       props.children.map((el, idx) => {
         const layoutItem = props.layout?.find(
-          (layoutItem) => layoutItem.i === el.key
+          (layoutItem) => layoutItem.i === el.key,
         )!;
-        const {
-          widthGap,
-          heightGap,
-          itemW,
-          itemH,
-          marginH,
-          marginV,
-        } = mainRef.current;
+        const { widthGap, heightGap, itemW, itemH, marginH, marginV } =
+          mainRef.current;
         const elementX = getGridItemPosDim(
           layoutItem.x,
           itemW,
           layoutItem.w,
           widthGap,
-          marginH
+          marginH,
         );
         const elementY = getGridItemPosDim(
           layoutItem.y,
           itemH,
           layoutItem.h,
           heightGap,
-          marginV
+          marginV,
         );
 
         return (
@@ -461,7 +455,7 @@ export default function StaticGrid(props: Props) {
             />
           </div>
         );
-      })
+      }),
     );
     // TODO: DO I NEED TO CHECK FOR THE PROPS? ISN'T THIS AUTOMATIC?
   }, [props.layout, props.children, update]);
@@ -485,7 +479,7 @@ export default function StaticGrid(props: Props) {
                 background: cell === 1 ? 'rgba(255, 255, 255, 0.3)' : '',
               }}
             />
-          ))
+          )),
         )}
       {children}
     </div>

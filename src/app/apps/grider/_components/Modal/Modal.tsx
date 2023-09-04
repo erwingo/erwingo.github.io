@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import usePortal from 'react-useportal';
+import './Modal.css';
 import ModalInput, { Props as ModalInputProps } from './ModalInput';
 import ModalOptions, { Props as ModalOptionsProps } from './ModalOptions';
-import './Modal.css';
 
 type Props = {
   onClose: () => void;

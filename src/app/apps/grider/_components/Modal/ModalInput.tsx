@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef, useEffect, Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
 export type Props = {
   onSubmit: (e: string) => void;

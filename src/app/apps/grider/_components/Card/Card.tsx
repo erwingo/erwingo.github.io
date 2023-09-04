@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Card.css';
 
 export type Props = {
@@ -18,7 +18,7 @@ export default function Card(props: Props) {
       parsedUrl = `https://player.twitch.tv/?channel=${parsedUrl.slice(3)}`;
     } else if (parsedUrl?.slice(0, 3) === 'TC-') {
       parsedUrl = `https://www.twitch.tv/embed/${parsedUrl.slice(
-        3
+        3,
       )}/chat?darkpopout`;
     }
 

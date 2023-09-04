@@ -60,7 +60,7 @@ export function encodeLayout(layout: Layout) {
         h: el.h,
         w: el.w,
         i: el.i,
-      }))
+      })),
     )
       .replace(/\[/g, '_')
       .replace(/\]/g, 'b')
@@ -68,7 +68,7 @@ export function encodeLayout(layout: Layout) {
       .replace(/\}/g, 'd')
       .replace(/\:/g, 'e')
       .replace(/\,/g, 'f')
-      .replace(/\"/g, 'g')
+      .replace(/\"/g, 'g'),
   );
 }
 
@@ -82,7 +82,7 @@ export function decodeLayout(layout: string) {
         .replace(/d/g, '}')
         .replace(/e/g, ':')
         .replace(/f/g, ',')
-        .replace(/g/g, '"')
+        .replace(/g/g, '"'),
     );
   } catch (err) {
     return null;
@@ -94,8 +94,8 @@ export function encodeCardUrls(items: (string | undefined)[]) {
     items.reduce(
       (prev, curr, idx) =>
         `${prev}${idx === 0 ? '' : CARD_URL_SEP}${curr || 0}`,
-      ''
-    ) as string
+      '',
+    ) as string,
   );
 }
 

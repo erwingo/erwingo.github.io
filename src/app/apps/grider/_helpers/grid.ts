@@ -1,7 +1,7 @@
 export function getGridDimensions(
   containerDim: number,
   colsOrRows: number,
-  margin = 0
+  margin = 0,
 ) {
   const totalMargin = (colsOrRows + 1) * margin;
   const newContainerDim = containerDim - totalMargin;
@@ -19,7 +19,7 @@ export function getGridDimensions(
 function getGridItemDimensionOffset(
   itemPos: number,
   itemSize: number,
-  gap: number
+  gap: number,
 ) {
   return itemSize + itemPos < gap
     ? itemSize
@@ -33,7 +33,7 @@ export function getGridItemPosDim(
   itemDimension: number,
   itemSize: number,
   gap: number,
-  margin = 0
+  margin = 0,
 ) {
   const posOffset = itemPos < gap ? itemPos : gap;
   const dimOffset = getGridItemDimensionOffset(itemPos, itemSize, gap);
