@@ -1,64 +1,23 @@
 'use client';
 
 import profilePicImg from '@/assets/profilepic.jpg';
+import { Info } from '@/content/schemas';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { AnchorHTMLAttributes, ReactNode } from 'react';
+import React from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { HiDownload } from 'react-icons/hi';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { twMerge } from 'tailwind-merge';
 
-// import { useSectionInView } from "@/lib/hooks";
-// import { useActiveSectionContext } from "@/context/active-section-context";
+type Props = {
+  info: Info;
+};
 
-type Button = {
-  buttonProps?: AnchorHTMLAttributes<HTMLAnchorElement>;
-  href: string;
-} & (
-  | {
-      type: 'normal';
-      label: string;
-      iconRight?: ReactNode;
-    }
-  | { type: 'icon'; icon: ReactNode }
-);
-
-const buttons: Button[] = [
-  {
-    type: 'normal',
-    label: 'Download CV',
-    href: '/CV.pdf',
-    buttonProps: { download: true },
-    iconRight: <HiDownload className="transition group-hover:translate-y-1" />,
-  },
-  {
-    type: 'icon',
-    href: 'https://www.linkedin.com/in/goerwin/',
-    buttonProps: {
-      title: 'LinkedIn',
-      target: '_blank',
-    },
-    icon: <FaLinkedin />,
-  },
-  {
-    type: 'icon',
-    href: 'https://github.com/goerwin',
-    buttonProps: {
-      title: 'Github',
-      target: '_blank',
-    },
-    icon: <FaGithub />,
-  },
-];
-
-export default function Intro() {
-  // const { ref } = useSectionInView("Home", 0.5);
-  // const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
-
+export default function Intro(props: Props) {
   return (
     <section
-      // ref={ref}
       id="intro"
       className="mb-28 max-w-[54rem] scroll-mt-[100rem] text-center sm:mb-0"
     >
@@ -67,10 +26,7 @@ export default function Intro() {
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: 'tween',
-              duration: 0.2,
-            }}
+            transition={{ type: 'tween', duration: 0.2 }}
           >
             <Image
               src={profilePicImg}
@@ -104,13 +60,7 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I&apos;m Erwin.</span> I&apos;m a{' '}
-        <span className="font-bold">Senior Front-End Developer</span> with
-        industry experience <span className="font-bold">since 2012. </span> I
-        enjoy building sites & apps using mainly{' '}
-        <span className="font-bold">React</span>,{' '}
-        <span className="font-bold">JavaScript/TypeScript</span> and{' '}
-        <span className="font-bold">Next.js</span>.
+        <ReactMarkdown children={props.info.content} />
       </motion.h1>
 
       <motion.div
@@ -119,20 +69,34 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        {buttons.map((it, idx) => (
+        {props.info.links.map((it, idx) => (
           <Link
             key={idx}
-            {...it.buttonProps}
             href={it.href}
+            title={it.title}
+            target={it.target}
+            download={it.download}
             className={twMerge(
               'group flex items-center rounded-full bg-white text-gray-700 transition hover:scale-105 hover:text-gray-950 focus:scale-105 active:scale-105 dark:bg-gray-900 dark:text-white',
-              it.type === 'normal' && 'gap-2 px-7 py-4 text-base',
+              it.type === 'text' && 'gap-2 px-7 py-4 text-base',
               it.type === 'icon' && 'p-4 text-2xl',
             )}
           >
-            {it.type === 'normal' ? it.label : null}
-            {it.type === 'normal' ? it.iconRight : null}
-            {it.type === 'icon' ? it.icon : null}
+            {it.type === 'text' ? (
+              <>
+                {it.label}
+                {it.iconRight === 'download' ? (
+                  <HiDownload className="transition group-hover:translate-y-1" />
+                ) : null}
+              </>
+            ) : null}
+
+            {it.type === 'icon' ? (
+              <>
+                {it.icon === 'github' ? <FaGithub /> : null}
+                {it.icon === 'linkedin' ? <FaLinkedin /> : null}
+              </>
+            ) : null}
           </Link>
         ))}
       </motion.div>

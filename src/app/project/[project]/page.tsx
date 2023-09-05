@@ -2,7 +2,7 @@ import { metadata } from '@/app/layout';
 import Carousel from '@/components/Carousel';
 import TagList from '@/components/TagList';
 import { getDateRange } from '@/utils/date';
-import { getProjects } from '@/utils/projects';
+import { getProjects } from '@/utils/content';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';

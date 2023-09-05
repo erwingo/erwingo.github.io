@@ -2,7 +2,7 @@ import { metadata } from '@/app/layout';
 import Pagination, { getPaginationInfo } from '@/components/Pagination';
 import ProjectList from '@/components/ProjectList';
 import SectionTitle from '@/components/SectionTitle';
-import { getProjects } from '@/utils/projects';
+import { getProjects } from '@/utils/content';
 import { Metadata } from 'next';
 
 // NOTE: this should be provided by next.js! come on!

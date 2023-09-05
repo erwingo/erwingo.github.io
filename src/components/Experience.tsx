@@ -1,10 +1,12 @@
 import SectionTitle from '@/components/SectionTitle';
-import { experiences } from '@/content/general';
+import { getExperiences } from '@/utils/content';
 import { getDateRange } from '@/utils/date';
 import { LuGraduationCap } from 'react-icons/lu';
 import { MdBusinessCenter } from 'react-icons/md';
 
-export default function Experience() {
+export default async function Experience() {
+  const experiences = await getExperiences();
+
   return (
     <section className="max-w-[60rem] pt-[100px]" id="experience">
       <SectionTitle title="My Experience" />
@@ -18,7 +20,9 @@ export default function Experience() {
             <div className="relative ml-4 rounded border border-gray-300 bg-gray-200/50 p-4 dark:border-gray-700 dark:bg-gray-900 md:mr-auto md:group-odd:ml-auto md:group-odd:mr-8 md:group-even:col-start-3 md:group-even:ml-8">
               <div className="absolute left-[-10px] top-[calc(theme(spacing.timelineIconSize)/2-theme(spacing.timelineArrowHeight))] h-0 w-0 border-y-[length:theme(spacing.timelineArrowHeight)] border-r-[10px] border-y-transparent border-r-gray-300 dark:border-r-gray-700 md:group-odd:left-auto md:group-odd:right-[-10px] md:group-odd:border-l-[10px]  md:group-odd:border-r-0 md:group-odd:border-l-gray-300 md:group-odd:border-r-transparent md:dark:group-odd:border-l-gray-700" />
 
-              <h3 className="text-base font-semibold">{it.position}</h3>
+              <h3 className="text-base font-semibold">
+                {it.type === 'work' ? it.position : it.title}
+              </h3>
               <h4 className="text-sm font-normal">
                 {it.company}
                 <span className="italic opacity-70"> - {it.location}</span>

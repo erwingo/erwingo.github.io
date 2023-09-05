@@ -1,5 +1,5 @@
 import placeholderImg from '@/assets/placeholder.jpeg';
-import { Project } from '@/content/types';
+import { Project } from '@/content/schemas';
 import { getDateRange } from '@/utils/date';
 import Image from 'next/image';
 import Link from 'next/link';

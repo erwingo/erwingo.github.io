@@ -3,7 +3,7 @@ name: SlideTown
 description: SlideTown was one of the first presentation marketplaces in the world. We helped companies find the perfect presentations to tell more powerful and engaging stories!
 startDate: 2012-11-15
 endDate: 2013-12-15
-skills: ['HTML', 'CSS', 'JavaScript', 'JQuery', 'Backbone', 'Git']
+skills: ['HTML', 'CSS', 'JavaScript', 'JQuery', 'Backbone.js', 'Git']
 images:
   [
     '/assets/projects/slidetown1.jpeg',

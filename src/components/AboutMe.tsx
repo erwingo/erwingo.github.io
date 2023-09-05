@@ -1,16 +1,30 @@
 import SectionTitle from '@/components/SectionTitle';
-import { aboutMe } from '@/content/general';
+import { getAbout, getInfo } from '@/utils/content';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-export default function AboutMe() {
+export default async function AboutMe() {
+  const aboutMe = await getAbout();
+  const info = await getInfo();
+  const languages = info.languages;
+
   return (
     <section className="max-w-[40rem] pt-[100px] text-center" id="about">
       <SectionTitle title="About Me" />
 
-      {aboutMe.map((it, idx) => (
-        <p key={idx} className="mb-5 leading-loose">
-          {it}
-        </p>
-      ))}
+      <ReactMarkdown
+        className="[&>p]:mb-5 [&>p]:leading-loose"
+        children={aboutMe.content}
+      />
+
+      <p className='mb-5 font-bold'>My languages are:</p>
+
+      <div>
+        {languages.map((it, idx) => (
+          <div key={idx}>
+            {it.name} ({it.level})
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

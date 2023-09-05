@@ -1,5 +1,5 @@
 import SectionTitle from '@/components/SectionTitle';
-import { getProjects } from '@/utils/projects';
+import { getProjects } from '@/utils/content';
 import Link from 'next/link';
 import React from 'react';
 import ProjectList from './ProjectList';

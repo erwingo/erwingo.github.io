@@ -1,6 +1,6 @@
 import SectionTitle from '@/components/SectionTitle';
 import TagList from '@/components/TagList';
-import { getProjects } from '@/utils/projects';
+import { getProjects } from '@/utils/content';
 
 export default async function Skills() {
   const projects = await getProjects();
