@@ -11,6 +11,7 @@ export const GeneralGrayMatterSchema = z
 
 export const InfoSchema = z.object({
   name: z.string(),
+  image: z.string(),
   birthplace: z.string(),
   birthdate: z.string(),
   phone: z.string(),

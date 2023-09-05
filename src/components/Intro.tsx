@@ -1,6 +1,5 @@
 'use client';
 
-import profilePicImg from '@/assets/profilepic.jpg';
 import { Info } from '@/content/schemas';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -29,7 +28,7 @@ export default function Intro(props: Props) {
             transition={{ type: 'tween', duration: 0.2 }}
           >
             <Image
-              src={profilePicImg}
+              src="/assets/profilepic.jpg"
               alt="Ricardo portrait"
               width="120"
               height="120"

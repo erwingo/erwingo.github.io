@@ -1,7 +1,8 @@
 ---
 name: Erwin Gaitan Ospino
+image: /assets/profilepic.jpg
 birthplace: Colombia
-birthdate: November 2 1991
+birthdate: November 20, 1991
 phone: +57 324 4156992
 email: erwingaitano@gmail.com
 languages:
