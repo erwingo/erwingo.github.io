@@ -27,19 +27,13 @@ export default function RootLayout({
         />
         {/* this works because of rule "@next/next/no-sync-scripts" is disabled */}
         <script src="/initializer-theme.js" />
-        {/* <script src={import('@/scripts/global-theme-initializer')} /> */}
-        {/* <Script>{import('@/scripts/global-theme-initializer')}</Script> */}
-        {/* <Script>{import('../scripts/global-theme-initializer')}</Script> */}
       </head>
 
-      {/* NOTE: need relative in body and overflow-x-hidden to avoid horizontal scrolling no mobile */}
+      {/* NOTE: need relative in body and overflow-x-hidden to avoid horizontal scrolling on mobile */}
       <body
         className={`${inter.className} relative flex min-h-screen flex-col overflow-x-hidden bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100`}
       >
-        <GradientBackground />
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

@@ -1,13 +1,17 @@
+body {
+  background-color: white !important;
+}
+
 .cv-container {
   --textColor: #555555;
   --textLighterColor: #555555cc;
   --secondaryColor: #2079c7;
 
-  margin: 100px auto 0;
+  margin: 0 auto;
   background-color: #fff;
   color: var(--textColor);
-  max-width: 700pt;
-  padding: 72pt 72pt 36pt 72pt;
+  width: 8in;
+  padding: 0.5cm 1.5cm 0;
 }
 
 .cv-container section {
