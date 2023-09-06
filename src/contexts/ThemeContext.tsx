@@ -1,5 +1,6 @@
 'use client';
 
+import { tryUnknownFn } from '@/utils/general';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 type Theme = 'dark' | 'light' | 'device';
@@ -17,25 +18,25 @@ export function ThemeContextProvider(props: Props) {
   const [theme, setTheme] = useState<Theme>(getInitialTheme());
 
   function getInitialTheme(): Theme {
-    const initialTheme = (global as any)?.globalGetInitialTheme?.() || 'device';
+    const theme = tryUnknownFn(global, 'globalGetInitialTheme') || 'device';
 
-    if (initialTheme === 'dark') (global as any)?.globalSetDarkTheme?.();
-    else if (initialTheme === 'light') (global as any)?.globalSetLightTheme?.();
-    else (global as any)?.globalSetDeviceTheme?.();
+    if (theme === 'dark') tryUnknownFn(global, 'globalSetDarkTheme');
+    else if (theme === 'light') tryUnknownFn(global, 'globalSetLightTheme');
+    else tryUnknownFn(global, 'globalSetDeviceTheme');
 
-    return initialTheme;
+    return theme;
   }
 
   const toggleTheme = () => {
     if (theme === 'dark') {
       setTheme('device');
-      (global as any).globalSetLSDeviceTheme?.();
+      tryUnknownFn(global, 'globalSetLSDeviceTheme');
     } else if (theme === 'device') {
       setTheme('light');
-      (global as any).globalSetLSLightTheme?.();
+      tryUnknownFn(global, 'globalSetLSLightTheme');
     } else {
       setTheme('dark');
-      (global as any).globalSetLSDarkTheme?.();
+      tryUnknownFn(global, 'globalSetLSDarkTheme');
     }
   };
 

@@ -2,7 +2,6 @@ import {
   ExperiencesSchema,
   GeneralGrayMatterSchema,
   InfoSchema,
-  ProjectSchema,
   ProjectsSchema,
 } from '@/content/schemas';
 import { readFile, readdir } from 'fs/promises';

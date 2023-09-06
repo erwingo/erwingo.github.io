@@ -134,7 +134,9 @@ export default function StaticGrid(props: Props) {
 
     const handleItemDraggerMouseDown = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
-      const itemEl = el.parentElement!;
+      const itemEl = el.parentElement;
+
+      if (!itemEl) return;
 
       if (!el.classList.contains('StaticGrid__item__dragger')) return;
 
@@ -145,7 +147,9 @@ export default function StaticGrid(props: Props) {
 
       if (!itemId) return;
 
-      const item = mainRef.current.layout?.find((el) => el.i === itemId)!;
+      const item = mainRef.current.layout?.find((el) => el.i === itemId);
+
+      if (!item) return;
 
       mainRef.current.drag = {
         itemEl,
@@ -215,7 +219,9 @@ export default function StaticGrid(props: Props) {
 
     const handleItemResizerMouseDown = (e: MouseEvent) => {
       const el = e.target as HTMLElement;
-      const itemEl = el.parentElement!;
+      const itemEl = el.parentElement;
+
+      if (!itemEl) return;
 
       if (!el.classList.contains('StaticGrid__item__resizer')) return;
 
@@ -227,7 +233,9 @@ export default function StaticGrid(props: Props) {
 
       if (!itemId) return;
 
-      const item = mainRef.current.layout?.find((el) => el.i === itemId)!;
+      const item = mainRef.current.layout?.find((el) => el.i === itemId);
+
+      if (!item) return;
 
       mainRef.current.resize = {
         itemEl,
@@ -333,9 +341,11 @@ export default function StaticGrid(props: Props) {
       const endX = Math.floor(e.clientX / (itemW + marginH));
       const endY = Math.floor(e.clientY / (itemH + marginV));
 
-      let rowsSelected = endY >= startY ? endY - startY + 1 : endY - startY - 1;
-      let colsSelected = endX >= startX ? endX - startX + 1 : endX - startX - 1;
-      let newMatrix = getCleanMatrix();
+      const rowsSelected =
+        endY >= startY ? endY - startY + 1 : endY - startY - 1;
+      const colsSelected =
+        endX >= startX ? endX - startX + 1 : endX - startX - 1;
+      const newMatrix = getCleanMatrix();
       let i = 0;
       let absCols = 0;
       let absRows = 0;
@@ -360,7 +370,12 @@ export default function StaticGrid(props: Props) {
               ? newCols - 1
               : 0;
 
-          newMatrix[rowSelected]![colSelected] = 1;
+          const matrixRow = newMatrix[rowSelected];
+
+          if (!matrixRow) throw new Error('No Matrix row found!');
+          matrixRow[colSelected] = 1;
+
+          // newMatrix[rowSelected][colSelected] = 1;
           colsSelected > 0 ? j++ : j--;
         } while (j !== colsSelected);
       } while (i !== rowsSelected);
@@ -414,7 +429,10 @@ export default function StaticGrid(props: Props) {
       props.children.map((el, idx) => {
         const layoutItem = props.layout?.find(
           (layoutItem) => layoutItem.i === el.key,
-        )!;
+        );
+
+        if (!layoutItem) throw new Error('No layout found');
+
         const { widthGap, heightGap, itemW, itemH, marginH, marginV } =
           mainRef.current;
         const elementX = getGridItemPosDim(
@@ -442,7 +460,7 @@ export default function StaticGrid(props: Props) {
               width: elementX.dim,
               height: elementY.dim,
             }}
-            key={el.key!}
+            key={el.key}
           >
             {el}
             <div

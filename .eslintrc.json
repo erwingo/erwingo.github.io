@@ -1,8 +1,14 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "@next/next/no-sync-scripts": "off"
-    // todo: disabled for now because it's throwing on type definitions of functions
-    // "no-unused-vars": "error"
+    "@next/next/no-sync-scripts": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-non-null-assertion": "error"
   }
 }

@@ -93,7 +93,7 @@ export default function GriderApp() {
   };
 
   const setCardUrl = (cardId: string, url?: string) => {
-    let twitchData = url?.match(/twitch.tv\/(\w+)/);
+    const twitchData = url?.match(/twitch.tv\/(\w+)/);
     const username = twitchData?.[1];
     let parsedUrl = url;
 

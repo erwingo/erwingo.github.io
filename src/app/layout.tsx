@@ -1,6 +1,3 @@
-import Footer from '@/components/Footer';
-import GradientBackground from '@/components/GradientBackground';
-import Header from '@/components/Header';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
