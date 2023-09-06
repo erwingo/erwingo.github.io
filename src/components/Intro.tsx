@@ -74,6 +74,7 @@ export default function Intro(props: Props) {
             href={it.href}
             title={it.title}
             target={it.target}
+            prefetch={false}
             download={it.download}
             className={twMerge(
               'group flex items-center rounded-full bg-white text-gray-700 transition hover:scale-105 hover:text-gray-950 focus:scale-105 active:scale-105 dark:bg-gray-900 dark:text-white',
