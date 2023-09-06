@@ -18,7 +18,7 @@ links:
       iconRight: download,
       label: Download CV,
       target: _blank,
-      isDownload: true,
+      download: true,
     },
     {
       type: icon,
