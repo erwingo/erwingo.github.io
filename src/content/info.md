@@ -14,7 +14,7 @@ links:
   [
     {
       type: text,
-      href: /CV.pdf,
+      href: /cv.pdf,
       iconRight: download,
       label: Download CV,
       target: _blank,

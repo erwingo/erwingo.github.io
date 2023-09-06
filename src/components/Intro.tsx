@@ -59,7 +59,7 @@ export default function Intro(props: Props) {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <ReactMarkdown children={props.info.content} />
+        <ReactMarkdown>{props.info.content}</ReactMarkdown>
       </motion.h1>
 
       <motion.div

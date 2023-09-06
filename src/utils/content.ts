@@ -44,6 +44,7 @@ export async function getExperiences() {
 async function getProjectFiles() {
   const projectsContentDir = path.join(contentsDir, 'projects');
   const fileNames = await readdir(projectsContentDir);
+
   return fileNames
     .filter((it) => /\.md$/.test(it))
     .map((filename) => ({

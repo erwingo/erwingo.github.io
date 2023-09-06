@@ -11,12 +11,11 @@ export default async function AboutMe() {
     <section className="max-w-[40rem] pt-[100px] text-center" id="about">
       <SectionTitle title="About Me" />
 
-      <ReactMarkdown
-        className="[&>p]:mb-5 [&>p]:leading-loose"
-        children={aboutMe.content}
-      />
+      <ReactMarkdown className="[&>p]:mb-5 [&>p]:leading-loose">
+        {aboutMe.content}
+      </ReactMarkdown>
 
-      <p className='mb-5 font-bold'>My languages are:</p>
+      <p className="mb-5 font-bold">My languages are:</p>
 
       <div>
         {languages.map((it, idx) => (
