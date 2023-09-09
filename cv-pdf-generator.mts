@@ -1,9 +1,6 @@
-// todo: convert this to typescript, the problem is that ts-node
-// complains a lot!
-
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const path = require('path');
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
 
 const rootDir = path.join(process.cwd());
 const nextOutDir = path.join(rootDir, 'out');
@@ -22,6 +19,7 @@ async function main() {
     margin: { top: '0.5cm', bottom: '0.5cm' },
   });
 
+  console.log('PDF Generated!');
   await browser.close();
 }
 
