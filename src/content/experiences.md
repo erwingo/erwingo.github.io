@@ -62,6 +62,15 @@ experiences:
       link: 'https://www.globant.com/',
       location: 'Bogotá, Colombia',
       startDate: '2018-04-15',
+      endDate: '2023-10-06',
+    },
+    {
+      type: 'work',
+      position: 'Principal Software Engineer',
+      company: 'Fullstack Labs',
+      link: 'https://www.fullstacklabs.co/',
+      location: 'Barranquilla, Colombia',
+      startDate: '2023-10-06',
     },
   ]
 ---
