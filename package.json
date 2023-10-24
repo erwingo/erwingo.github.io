@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && npm run build-cv-pdf",
-    "build-cv-pdf": "npx ts-node --esm ./cv-pdf-generator.mts",
+    "build-cv-pdf": "node --loader ts-node/esm ./cv-pdf-generator.mts",
     "start": "next start",
     "postinstall": "node node_modules/puppeteer/install.js",
     "lint": "next lint"
