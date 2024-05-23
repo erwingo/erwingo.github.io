@@ -48,5 +48,10 @@ export function getImageSizeForContainer(
     imgHeight = containerH;
   }
 
-  return { width: imgWidth, height: imgHeight };
+  return {
+    width: imgWidth,
+    height: imgHeight,
+    offsetX: -(imgWidth - containerW) / 2,
+    offsetY: -(imgHeight - containerH) / 2,
+  };
 }

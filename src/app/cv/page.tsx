@@ -15,6 +15,7 @@ import {
   getImageInfo,
   getImageSizeForContainer,
 } from './utils';
+import Image from 'next/image';
 
 export default async function CVPage() {
   const projects = await getProjects();
@@ -45,9 +46,11 @@ export default async function CVPage() {
     .reverse();
 
   const mainImageInfo = await getImageInfo(info.image, 'data:image/png');
-  const imageSizeForContainer = getImageSizeForContainer(
-    200,
-    200,
+  const imgContainerW = 200;
+  const imgContainerH = 200;
+  const imgSizeForContainer = getImageSizeForContainer(
+    imgContainerW,
+    imgContainerH,
     mainImageInfo.width,
     mainImageInfo.height,
   );
@@ -60,14 +63,21 @@ export default async function CVPage() {
       <div className="cv-container">
         <section className="cv-container-header">
           <div
-            className="cv-container-header-image"
-            style={{
-              backgroundImage: `url(${mainImageInfo.base64})`,
-              width: 200,
-              height: 200,
-              backgroundSize: `${imageSizeForContainer.width}px ${imageSizeForContainer.height}px`,
-            }}
-          />
+            className="cv-container-header-image-container"
+            style={{ width: imgContainerW, height: imgContainerH }}
+          >
+            <Image
+              alt="Profile picture"
+              width={imgSizeForContainer.width}
+              height={imgSizeForContainer.height}
+              src={mainImageInfo.base64}
+              style={{
+                marginLeft: imgSizeForContainer.offsetX,
+                marginTop: imgSizeForContainer.offsetY,
+              }}
+            />
+          </div>
+
           <div className="cv-container-header-info">
             <h2>{info.name}</h2>
             <p>
