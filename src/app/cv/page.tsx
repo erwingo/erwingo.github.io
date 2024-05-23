@@ -9,8 +9,12 @@ import {
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import ExperienceBox from './ExperienceBox';
-import Image from 'next/image';
-import { getResetStyles, getStyles, toBase64 } from './utils';
+import {
+  getResetStyles,
+  getStyles,
+  getImageInfo,
+  getImageSizeForContainer,
+} from './utils';
 
 export default async function CVPage() {
   const projects = await getProjects();
@@ -40,6 +44,14 @@ export default async function CVPage() {
     .filter((it): it is EducationExperience => it.type === 'education')
     .reverse();
 
+  const mainImageInfo = await getImageInfo(info.image, 'data:image/png');
+  const imageSizeForContainer = getImageSizeForContainer(
+    200,
+    200,
+    mainImageInfo.width,
+    mainImageInfo.height,
+  );
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: resetStyles }}></style>
@@ -47,11 +59,14 @@ export default async function CVPage() {
 
       <div className="cv-container">
         <section className="cv-container-header">
-          <Image
-            alt="Profile picture"
-            width={100}
-            height={100}
-            src={await toBase64(info.image, 'data:image/png')}
+          <div
+            className="cv-container-header-image"
+            style={{
+              backgroundImage: `url(${mainImageInfo.base64})`,
+              width: 200,
+              height: 200,
+              backgroundSize: `${imageSizeForContainer.width}px ${imageSizeForContainer.height}px`,
+            }}
           />
           <div className="cv-container-header-info">
             <h2>{info.name}</h2>

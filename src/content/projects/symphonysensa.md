@@ -1,7 +1,7 @@
 ---
 name: Symphony AI
 company: Fullstack Labs
-description: AI for financial crime prevention
+description: AI services for banks including financial crime prevention
 startDate: 2023-10-15
 endDate: 2024-05-15
 skills:
@@ -33,9 +33,9 @@ Also, as a Senior front-end developer, I worked on other tasks including, develo
 
 My responsibilities were:
 
-* Migrate Regraph library to a D3 component
-* Implement features using TypeScript, React, GraphQL, Apollo
-* Participate in code review processes for multiple teams
-* Create unit tests and integration tests using React Testing Library
-* Attend refinement meetings, daily standups, demo meetings
-* Propose new features and modification/elimination of existing ones
+- Migrate Regraph library to a D3 component
+- Implement features using TypeScript, React, GraphQL, Apollo
+- Participate in code review processes for multiple teams
+- Create unit tests and integration tests using React Testing Library
+- Attend refinement meetings, daily standups, demo meetings
+- Propose new features and modification/elimination of existing ones

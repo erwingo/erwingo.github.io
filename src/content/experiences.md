@@ -71,6 +71,7 @@ experiences:
       link: 'https://www.fullstacklabs.co/',
       location: 'Barranquilla, Colombia',
       startDate: '2023-10-06',
+      endDate: '2024-05-15',
     },
   ]
 ---

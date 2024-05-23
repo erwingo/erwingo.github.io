@@ -1,5 +1,6 @@
 import { readFile } from 'fs/promises';
 import path from 'path';
+import imageSize from 'image-size';
 
 const rootDir = path.join(process.cwd());
 const publicDir = path.join(rootDir, 'public');
@@ -13,7 +14,39 @@ export async function getStyles() {
   return readFile(path.join(srcDir, 'app/cv/styles.css'), 'utf-8');
 }
 
-export async function toBase64(publicPath: string, type: string) {
-  const file = await readFile(path.join(publicDir, publicPath));
-  return `${type};base64, ${Buffer.from(file).toString('base64')}`;
+export async function getImageInfo(publicPath: string, type: string) {
+  const parsedPath = path.join(publicDir, publicPath);
+  const file = await readFile(parsedPath);
+  const imageInfo = imageSize(parsedPath);
+
+  if (!imageInfo.width || !imageInfo.height)
+    throw new Error(`No Image info: ${parsedPath}`);
+
+  return {
+    ...imageInfo,
+    width: imageInfo.width,
+    height: imageInfo.height,
+    base64: `${type};base64,${Buffer.from(file).toString('base64')}`,
+  };
+}
+
+export function getImageSizeForContainer(
+  containerW: number,
+  containerH: number,
+  imageW: number,
+  imageH: number,
+) {
+  let imgWidth, imgHeight;
+  const containerRatio = containerW / containerH;
+  const imgRatio = imageW / imageH;
+
+  if (containerRatio > imgRatio) {
+    imgWidth = containerW;
+    imgHeight = containerW / imgRatio;
+  } else {
+    imgWidth = containerH * imgRatio;
+    imgHeight = containerH;
+  }
+
+  return { width: imgWidth, height: imgHeight };
 }

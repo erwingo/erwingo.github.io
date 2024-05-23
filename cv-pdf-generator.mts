@@ -6,7 +6,7 @@ const rootDir = path.join(process.cwd());
 const nextOutDir = path.join(rootDir, 'out');
 
 async function main() {
-  const browser = await puppeteer.launch({ headless: 'new' });
+  const browser = await puppeteer.launch({ headless: true });
   const tab = await browser.newPage();
   const cvHtml = fs.readFileSync(path.join(nextOutDir, 'cv.html'), {
     encoding: 'utf-8',
@@ -14,8 +14,10 @@ async function main() {
 
   await tab.setContent(cvHtml);
   await tab.pdf({
-    path: path.join(nextOutDir, 'cv.pdf'),
+    tagged: false,
+    path: path.join(nextOutDir, 'Erwin_Gaitan_CV.pdf'),
     format: 'Letter',
+    printBackground: true,
     margin: { top: '0.5cm', bottom: '0.5cm' },
   });
 

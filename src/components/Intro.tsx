@@ -29,7 +29,7 @@ export default function Intro(props: Props) {
           >
             <Image
               src="/assets/profilepic.jpg"
-              alt="Ricardo portrait"
+              alt="Erwin portrait"
               width="120"
               height="120"
               quality="95"

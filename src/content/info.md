@@ -14,7 +14,7 @@ links:
   [
     {
       type: text,
-      href: /cv.pdf,
+      href: /Erwin_Gaitan_CV.pdf,
       iconRight: download,
       label: Download CV,
       target: _blank,
