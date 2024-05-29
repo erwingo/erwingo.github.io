@@ -5,6 +5,10 @@ birthplace: Colombia
 birthdate: November 20, 1991
 phone: +57 324 4156992
 email: erwingaitano@gmail.com
+website: https://goerwin.github.io
+github: https://github.com/goerwin
+linkedin: https://www.linkedin.com/in/goerwin
+
 languages:
   [
     { name: 'Spanish', level: 'Native' },

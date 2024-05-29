@@ -17,6 +17,10 @@ import {
 } from './utils';
 import Image from 'next/image';
 
+function beautifyUrl(url: string) {
+  return url.replace(/https:\/\/(www\.)?/, '');
+}
+
 export default async function CVPage() {
   const projects = await getProjects();
   const aboutMe = await getAbout();
@@ -92,9 +96,16 @@ export default async function CVPage() {
               <b>Phone: </b>
               <a href={`tel:${info.phone}`}>{info.phone}</a>
             </p>
-            <p>
-              <b>Email: </b>
+            <p style={{ fontWeight: 'bold' }}>
               <a href={`mailto:${info.email}`}>{info.email}</a>
+              <span> 💻 </span>
+              <a href={info.website}>{beautifyUrl(info.website)}</a>
+            </p>
+
+            <p style={{ fontWeight: 'bold' }}>
+              <a href={info.linkedin}>{beautifyUrl(info.linkedin)}</a>
+              <span> 💻 </span>
+              <a href={info.github}>{beautifyUrl(info.github)}</a>
             </p>
           </div>
         </section>

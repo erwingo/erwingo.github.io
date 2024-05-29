@@ -16,6 +16,9 @@ export const InfoSchema = z.object({
   birthdate: z.string(),
   phone: z.string(),
   email: z.string(),
+  github: z.string(),
+  linkedin: z.string(),
+  website: z.string(),
   content: z.string(),
   languages: z.array(LanguageSchema),
   links: z.array(
