@@ -13,9 +13,9 @@ export default async function HomePage() {
       <Intro info={info} />
       <div className="mt-14 h-16 w-1 rounded-full bg-gray-200" />
       <AboutMe />
-      <Projects />
       <Skills />
       <Experience />
+      <Projects />
     </main>
   );
 }

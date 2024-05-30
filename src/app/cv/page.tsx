@@ -29,7 +29,6 @@ export default async function CVPage() {
   const resetStyles = await getResetStyles();
   const styles = await getStyles();
 
-  const languages = info.languages;
   const skillsMap = projects.reduce<Record<string, number>>((acc, proj) => {
     proj.skills.forEach((sk) => (acc[sk] ? (acc[sk] += 1) : (acc[sk] = 1)));
     return acc;
@@ -61,6 +60,7 @@ export default async function CVPage() {
 
   return (
     <>
+      <title>Erwin_Gaitan_CV</title>
       <style dangerouslySetInnerHTML={{ __html: resetStyles }}></style>
       <style dangerouslySetInnerHTML={{ __html: styles }}></style>
 
@@ -121,6 +121,18 @@ export default async function CVPage() {
         </section>
 
         <section>
+          <h1>Languages</h1>
+
+          <ul>
+            {info.languages.map((it, idx) => (
+              <li key={idx}>
+                {it.name} ({it.level})
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
           <h1>Skills</h1>
 
           <p className="skills">
@@ -128,18 +140,6 @@ export default async function CVPage() {
               <span key={idx}>{name} </span>
             ))}
           </p>
-        </section>
-
-        <section>
-          <h1>Languages</h1>
-
-          <ul>
-            {languages.map((it, idx) => (
-              <li key={idx}>
-                {it.name} ({it.level})
-              </li>
-            ))}
-          </ul>
         </section>
 
         <section>
