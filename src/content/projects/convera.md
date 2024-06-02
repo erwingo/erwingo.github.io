@@ -29,12 +29,14 @@ I worked on the initial setup of the micro-frontend using Webpack’s module fed
 
 During the mentioned process, I have to be part of multiple meetings with several software technical leads and discuss whether the micro-frontend approach would work for all the teams, since we also have the monolithic approach in mind.
 
+On the back-end side, I worked on improving the SEO for some landing pages by moving them from client side generated pages to server side rendered pages using Next.js.
+
 My responsibilities were:
 
 * Discuss and research pros/cons of Micro-frontend vs Monolithic architecture
 * Investigate and create the micro-frontend approach for React applications
 * Implement the micro-frontend approach using Webpack’s module federation
-* Implement features using TypeScript, React and Redux
+* Implement features using TypeScript, React, Next and Redux
 * Participate in code review processes for multiple teams
 * Create unit tests and integration tests using React Testing Library
 * Attend refinement meetings, daily standups, demo meetings

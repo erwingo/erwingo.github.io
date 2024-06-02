@@ -16,6 +16,7 @@ skills:
     'React',
     'D3',
     'Regraph',
+    'Next.js',
     'React Query',
     'React Testing Library',
     'Figma',
@@ -29,13 +30,14 @@ Among those services, I worked in the management dashboard and displaying of gra
 
 I mainly worked on the Regraph library to D3 Migration, where we wanted to create a component that displays through a graph, the users, transactions and relationships between these transactions in a Force-Directed Graph with balanced nodes.
 
-Also, as a Senior front-end developer, I worked on other tasks including, developing new features with colaboration of the API team, fixing bugs, suggesting improvements throughout the app.
+Also, I worked on other tasks including, developing new features with collaboration of the API team, fixing bugs, work in some back-end related tasks such as managing API routes with Next.js and page routing, also suggesting features and improvements throughout the app.
 
 My responsibilities were:
 
 - Migrate Regraph library to a D3 component
 - Implement features using TypeScript, React, GraphQL, Apollo
 - Participate in code review processes for multiple teams
+- Work in some back-end related tasks using Node and Next.js
 - Create unit tests and integration tests using React Testing Library
 - Attend refinement meetings, daily standups, demo meetings
 - Propose new features and modification/elimination of existing ones
