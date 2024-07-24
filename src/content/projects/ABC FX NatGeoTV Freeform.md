@@ -14,6 +14,7 @@ skills:
     'React',
     'Redux',
     'MobX',
+    'Storybook',
     'Sketch',
     'Node.js',
     'Jest',

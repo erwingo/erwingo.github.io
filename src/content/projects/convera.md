@@ -14,6 +14,7 @@ skills:
     'Redux',
     'Redux toolkit',
     'Webpack.js',
+    'Storybook',
     'Jest',
     'Next.js',
     'React Testing Library',
